@@ -8,6 +8,8 @@ import helmet from "helmet";
 
 import authRoutes from "./routes/auth.js";
 
+import { verifyToken } from "./middleware/auth.js";
+
 /* CONFIGURATIONS */
 dotenv.config();
 const app = express();
@@ -17,6 +19,12 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 
 app.use(cors());
+
+/* FILE STORAGE */
+const storage = multer.diskStorage({});
+
+/* ROUTES WITH FILES */
+app.post("/complaint", verifyToken, upload.single("picture"), raiseComplaint);
 
 /* Routes */
 app.use("/auth", authRoutes);
