@@ -76,7 +76,7 @@ const Form = () => {
             }
         );
         const loggedIn = await loggedInResponse.json();
-        onSubmitProps.reserForm();
+        onSubmitProps.resetForm();
         if (loggedIn) {
             dispatch(
                 setLogin({
@@ -107,7 +107,7 @@ const Form = () => {
                 handleChange,
                 handleSubmit,
                 setFieldValue,
-                reserForm,
+                resetForm,
             }) => (
                 <form>
                     <div>
@@ -234,7 +234,7 @@ const Form = () => {
                         <h5
                             onClick={() => {
                                 setPageType(isLogin ? "register" : "login");
-                                reserForm();
+                                resetForm();
                             }}
                         >
                             {isLogin

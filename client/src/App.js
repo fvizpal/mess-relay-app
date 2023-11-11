@@ -1,6 +1,5 @@
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { useMemo } from "react";
 
 import HomePage from "scenes/HomePage";
 import LoginPage from "scenes/LoginPage";
