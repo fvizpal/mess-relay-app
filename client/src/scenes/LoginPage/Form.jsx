@@ -59,7 +59,7 @@ const Form = () => {
             formData.append(value, values[value]);
         }
 
-        const savedUserResponse = await fetch("localhost:3001/auth/register", {
+        const savedUserResponse = await fetch("localhost:3003/auth/register", {
             method: "POST",
             body: formData,
         });
@@ -72,7 +72,7 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "http://localhost:3001/auth/login",
+            "http://localhost:3003/auth/login",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
