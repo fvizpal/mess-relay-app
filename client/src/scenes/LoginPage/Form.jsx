@@ -180,7 +180,21 @@ const Form = () => {
                                         Boolean(errors.hostel)
                                     }
                                     helperText={touched.hostel && errors.hostel}
-                                />
+                                    select
+                                >
+                                    <MenuItem value="tandon">
+                                        Tandon Hostel
+                                    </MenuItem>
+                                    <MenuItem value="malviya">
+                                        Malviya Hostel
+                                    </MenuItem>
+                                    <MenuItem value="tilak">
+                                        Tilak Hostel
+                                    </MenuItem>
+                                    <MenuItem value="newboys">
+                                        New Boys Hostel
+                                    </MenuItem>
+                                </TextField>
                             </>
                         )}
 
