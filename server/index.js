@@ -48,11 +48,8 @@ app.use("/auth", authRoutes);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001;
 mongoose
-    .connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
+    .connect(process.env.MONGO_URL)
     .then(() => {
         app.listen(PORT, () => console.log(`Server running on Port ${PORT}`));
     })
-    .catch((error) => console.log(`${error} \n did not connect`));
+    .catch((error) => console.log(`${error} \ndid not connect`));
