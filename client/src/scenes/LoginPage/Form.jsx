@@ -1,6 +1,14 @@
 import { Formik } from "formik";
 import { useState } from "react";
-
+import {
+    Box,
+    Button,
+    TextField,
+    useMediaQuery,
+    Typography,
+    // useTheme,
+    MenuItem,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLogin } from "state";
@@ -8,14 +16,8 @@ import { setLogin } from "state";
 import * as yup from "yup";
 
 const registerSchema = yup.object().shape({
-    firstName: yup
-        .string()
-        .required("Required")
-        .min(2, "Must be minimum of 2 characters long"),
-    LastName: yup
-        .string()
-        .required("Required")
-        .min(2, "Must be minimum of 2 characters long"),
+    firstName: yup.string().required("Required"),
+    lastName: yup.string().required("Required"),
     email: yup.string().email("Invalid email").required("Required"),
     password: yup.string().required("Required"),
     role: yup.string().required("Required"),
@@ -45,6 +47,8 @@ const Form = () => {
     const [pageType, setPageType] = useState("login");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const isDesktop = useMediaQuery("(min-width:600px)");
 
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
@@ -110,11 +114,18 @@ const Form = () => {
                 resetForm,
             }) => (
                 <form>
-                    <div>
+                    <Box
+                        display="grid"
+                        gap="30px"
+                        sx={{
+                            "& > div": {
+                                gridColumn: isDesktop ? undefined : "span 4",
+                            },
+                        }}
+                    >
                         {isRegister && (
                             <>
-                                <input
-                                    type="text"
+                                <TextField
                                     label="First name"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
@@ -128,8 +139,7 @@ const Form = () => {
                                         touched.firstName && errors.firstName
                                     }
                                 />
-                                <input
-                                    type="text"
+                                <TextField
                                     label="Last name"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
@@ -143,36 +153,7 @@ const Form = () => {
                                         touched.lastName && errors.lastName
                                     }
                                 />
-                                <input
-                                    type="text"
-                                    label="Email"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.email}
-                                    name="email"
-                                    error={
-                                        Boolean(touched.email) &&
-                                        Boolean(errors.email)
-                                    }
-                                    helperText={touched.email && errors.email}
-                                />
-                                <input
-                                    type="text"
-                                    label="Password"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.password}
-                                    name="password"
-                                    error={
-                                        Boolean(touched.password) &&
-                                        Boolean(errors.password)
-                                    }
-                                    helperText={
-                                        touched.password && errors.password
-                                    }
-                                />
-                                <input
-                                    type="text"
+                                <TextField
                                     label="Role"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
@@ -183,9 +164,12 @@ const Form = () => {
                                         Boolean(errors.role)
                                     }
                                     helperText={touched.role && errors.role}
-                                />
-                                <input
-                                    type="text"
+                                    select
+                                >
+                                    <MenuItem value="student">Student</MenuItem>
+                                    <MenuItem value="admin">Admin</MenuItem>
+                                </TextField>
+                                <TextField
                                     label="Hostel"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
@@ -200,8 +184,7 @@ const Form = () => {
                             </>
                         )}
 
-                        <input
-                            type="text"
+                        <TextField
                             label="Email"
                             onBlur={handleBlur}
                             onChange={handleChange}
@@ -212,9 +195,9 @@ const Form = () => {
                             }
                             helperText={touched.email && errors.email}
                         />
-                        <input
-                            type="text"
+                        <TextField
                             label="Password"
+                            type="password"
                             onBlur={handleBlur}
                             onChange={handleChange}
                             value={values.password}
@@ -225,23 +208,40 @@ const Form = () => {
                             }
                             helperText={touched.password && errors.password}
                         />
-                    </div>
+                    </Box>
 
-                    <div>
-                        <button type="submit">
+                    <Box>
+                        <Button
+                            fullwidth="true"
+                            type="submit"
+                            sx={{
+                                m: "2rem 0",
+                                p: "1rem",
+                                // backgroundColor={primary}
+                                color: "primary",
+                                "&:hover": { color: "secondary" },
+                            }}
+                        >
                             {isLogin ? "LOGIN" : "REGISTER"}
-                        </button>
-                        <h5
+                        </Button>
+                        <Typography
                             onClick={() => {
                                 setPageType(isLogin ? "register" : "login");
                                 resetForm();
                             }}
+                            sx={{
+                                textDecoration: "underline",
+                                "&:hover": {
+                                    cursor: "pointer",
+                                    color: "primary",
+                                },
+                            }}
                         >
                             {isLogin
-                                ? "Haven't registered! Sign Up here"
-                                : "Already have an account! Login"}
-                        </h5>
-                    </div>
+                                ? "Haven't registered? Sign Up here"
+                                : "Already registered? Login"}
+                        </Typography>
+                    </Box>
                 </form>
             )}
         </Formik>
