@@ -231,6 +231,16 @@ const Form = () => {
                         <button type="submit">
                             {isLogin ? "LOGIN" : "REGISTER"}
                         </button>
+                        <h5
+                            onClick={() => {
+                                setPageType(isLogin ? "register" : "login");
+                                reserForm();
+                            }}
+                        >
+                            {isLogin
+                                ? "Haven't registered! Sign Up here"
+                                : "Already have an account! Login"}
+                        </h5>
                     </div>
                 </form>
             )}
