@@ -7,7 +7,21 @@ const HomePage = () => {
 
     return (
         <Box>
-            <Typography>mai kar dunga</Typography>
+            {isAdmin && (
+                <>
+                    <Typography>
+                        HomePage content for admin will be here...
+                    </Typography>
+                    <Typography>will be done shortly</Typography>
+                </>
+            )}
+
+            <Box>
+                <Typography>
+                    HomePage content for student will be here...
+                </Typography>
+                <Typography>will be done shortly</Typography>
+            </Box>
         </Box>
     );
 };
