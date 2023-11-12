@@ -29,7 +29,7 @@ const loginSchema = yup.object().shape({
     password: yup.string().required("Required"),
 });
 
-const initailRegisterValues = {
+const initialRegisterValues = {
     firstName: "",
     lastName: "",
     email: "",
@@ -60,23 +60,23 @@ const Form = () => {
         }
 
         const savedUserResponse = await fetch(
-            "http://localhost:3001/auth/register",
+            "http://localhost:3002/auth/register",
             {
                 method: "POST",
                 body: formData,
             }
         );
-        const saveduser = savedUserResponse.json();
+        const savedUser = await savedUserResponse.json();
         onSubmitProps.resetForm();
 
-        if (saveduser) {
+        if (savedUser) {
             setPageType("login");
         }
     };
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "http://localhost:3001/auth/login",
+            "http://localhost:3002/auth/login",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -104,7 +104,7 @@ const Form = () => {
     return (
         <Formik
             onSubmit={handleFormSubmit}
-            initialValues={isLogin ? initialLoginValues : initailRegisterValues}
+            initialValues={isLogin ? initialLoginValues : initialRegisterValues}
             validationSchema={isLogin ? loginSchema : registerSchema}
         >
             {({
@@ -117,7 +117,7 @@ const Form = () => {
                 setFieldValue,
                 resetForm,
             }) => (
-                <form>
+                <form onSubmit={handleSubmit}>
                     <Box
                         display="grid"
                         gap="30px"
@@ -130,7 +130,7 @@ const Form = () => {
                         {isRegister && (
                             <>
                                 <TextField
-                                    label="First name"
+                                    label="First Name"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     value={values.firstName}
@@ -144,7 +144,7 @@ const Form = () => {
                                     }
                                 />
                                 <TextField
-                                    label="Last name"
+                                    label="Last Name"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     value={values.lastName}

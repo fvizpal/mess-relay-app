@@ -10,7 +10,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/auth.js";
-import { register } from "./controllers/auth.js";
 
 import { verifyToken } from "./middleware/auth.js";
 
@@ -38,8 +37,6 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 //     },
 // });
 // const upload = multer({ storage });
-
-app.post("/auth/register", register);
 
 /* Routes */
 app.use("/auth", authRoutes);
