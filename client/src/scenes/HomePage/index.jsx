@@ -3,7 +3,8 @@ import { Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const HomePage = () => {
-    const isAdmin = Boolean(useSelector((state) => state.role === "admin"));
+    const user = useSelector((state) => state.user);
+    const isAdmin = Boolean(user.role === "admin");
 
     return (
         <Box>
