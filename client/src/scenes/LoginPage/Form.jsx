@@ -59,12 +59,16 @@ const Form = () => {
             formData.append(value, values[value]);
         }
 
-        const savedUserResponse = await fetch("localhost:3003/auth/register", {
-            method: "POST",
-            body: formData,
-        });
+        const savedUserResponse = await fetch(
+            "http://localhost:3001/auth/register",
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
         const saveduser = savedUserResponse.json();
         onSubmitProps.resetForm();
+
         if (saveduser) {
             setPageType("login");
         }
@@ -72,7 +76,7 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "http://localhost:3003/auth/login",
+            "http://localhost:3001/auth/login",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -157,7 +161,7 @@ const Form = () => {
                                     label="Role"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.role}
+                                    value={values.student}
                                     name="role"
                                     error={
                                         Boolean(touched.role) &&
@@ -173,7 +177,7 @@ const Form = () => {
                                     label="Hostel"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.hostel}
+                                    value={values.tandon}
                                     name="hostel"
                                     error={
                                         Boolean(touched.hostel) &&
