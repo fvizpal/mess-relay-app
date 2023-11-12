@@ -161,7 +161,7 @@ const Form = () => {
                                     label="Role"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.student}
+                                    value={values.role}
                                     name="role"
                                     error={
                                         Boolean(touched.role) &&
@@ -177,7 +177,7 @@ const Form = () => {
                                     label="Hostel"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.tandon}
+                                    value={values.hostel}
                                     name="hostel"
                                     error={
                                         Boolean(touched.hostel) &&
