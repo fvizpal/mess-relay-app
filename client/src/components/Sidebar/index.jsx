@@ -1,5 +1,15 @@
 import React from "react";
-import { Box, Drawer, List, Typography } from "@mui/material";
+import {
+    Box,
+    Drawer,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Typography,
+} from "@mui/material";
+import { HomeOutlined } from "@mui/icons-material";
 
 const Sidebar = ({
     isAdmin,
@@ -18,37 +28,65 @@ const Sidebar = ({
                     anchor="left"
                     sx={{
                         width: drawerWidth,
+                        "& .MuiDrawer-paper": {
+                            // color: theme.palette.secondary[200],
+                            // backgroundColor: theme.palette.background.alt,
+                            boxSixing: "border-box",
+                            borderWidth: isDesktop ? 0 : "2px",
+                            width: drawerWidth,
+                        },
                     }}
                 >
                     <Box width="100%">
-                        <Box m="2rem 2rem 2rem 2rem">
-                            <Box display="flex" alignItems="center">
-                                <Typography variant="h4" fontWeight={"bold"}>
-                                    MESS RELAY
-                                </Typography>
+                        <Box m="1.5rem 2rem 2rem 3rem">
+                            <Box
+                                display="flex"
+                                justifyContent={"space-between"}
+                                alignItems={"center"}
+                            >
+                                <Box display="flex" alignItems="center">
+                                    <Typography
+                                        variant="h4"
+                                        fontWeight={"bold"}
+                                    >
+                                        MESS RELAY
+                                    </Typography>
+                                </Box>
                             </Box>
                         </Box>
                         {isAdmin ? (
                             <List>
-                                <Typography>
-                                    Sidebar shall be here ...
-                                </Typography>
-                                <Typography>
-                                    No kidding imma really put the sidebar here,
-                                    dont believe ? come back after a short
-                                    while.
-                                </Typography>
+                                <ListItem>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <HomeOutlined />
+                                        </ListItemIcon>
+                                        <ListItemText primary={"Dashboard"} />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <HomeOutlined />
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary={"Raise Complaint"}
+                                        />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            <HomeOutlined />
+                                        </ListItemIcon>
+                                        <ListItemText primary={"Mess Menu"} />
+                                    </ListItemButton>
+                                </ListItem>
                             </List>
                         ) : (
                             <List>
-                                <Typography>
-                                    Sidebar shall be here ...
-                                </Typography>
-                                <Typography>
-                                    No kidding imma really put the sidebar here,
-                                    dont believe ? come back after a short
-                                    while.
-                                </Typography>
+                                <Typography>Sidebar</Typography>
+                                <Typography>student</Typography>
                             </List>
                         )}
                     </Box>

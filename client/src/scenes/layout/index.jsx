@@ -11,7 +11,7 @@ const Layout = () => {
     const isDesktop = useMediaQuery("(min-width: 600px)");
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const user = useSelector((state) => state.user);
-    const isAdmin = user.role === "admin";
+    const isAdmin = true || user.role === "admin";
 
     return (
         <Box display={isDesktop ? "flex" : "block"} width="100%" height="100%">
@@ -22,7 +22,7 @@ const Layout = () => {
                 isSidebarOpen={isSidebarOpen}
                 setIsSidebarOpen={setIsSidebarOpen}
             />
-            <Box>
+            <Box flexGrow={1}>
                 <Navbar
                     user={user}
                     isSidebarOpen={isSidebarOpen}

@@ -17,55 +17,87 @@ import {
 } from "@mui/icons-material";
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
-    const [anchorElement, setAnchorElement] = useState(null);
-    const isOpen = Boolean(anchorElement);
-    const handleClick = (event) => setAnchorElement(event.currTarget);
-    const handleClose = () => setAnchorElement(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const isOpen = Boolean(anchorEl);
+    const handleClick = (event) => setAnchorEl(event.currentTarget);
+    const handleClose = () => setAnchorEl(null);
 
     return (
         <AppBar
             sx={{
                 position: "static",
+                background: "none",
+                boxShadow: "none",
             }}
         >
-            <Toolbar>
+            <Toolbar sx={{ justifyContent: "space-between" }}>
                 {/* LEFT SIDE */}
-                <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                    <MenuIcon />
-                </IconButton>
+                <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    <IconButton
+                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                </Box>
 
                 {/* RIGHT SUDE */}
-                <IconButton>
-                    <DarkModeOutlined />
-                    <LightModeOutlined />
-                </IconButton>
-                <Button onClick={handleClick}>
-                    <Box textAlign={"left"}>
-                        <Typography
-                            fontWeight={"bold"}
-                            fontSize={"0.8rem"}
-                            sx={{ color: "primary" }}
-                        >
-                            John Cina
-                        </Typography>
-                    </Box>
-                    <ArrowDropDownOutlined
-                        sx={{
-                            color: "primary",
-                        }}
-                    />
-                </Button>
-                <Menu
-                    anchorEl={anchorElement}
-                    open={isOpen}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        verticle: "bottom",
-                        horizontal: "center",
-                    }}
+                <Box
+                    gap="1.5rem"
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
                 >
-                    <MenuItem onClick={handleClose}>LOG OUT</MenuItem>
-                </Menu>
+                    <IconButton>
+                        <DarkModeOutlined />
+                        <LightModeOutlined />
+                    </IconButton>
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        <Button
+                            onClick={handleClick}
+                            sx={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                gap: "1rem",
+                            }}
+                        >
+                            <Box textAlign={"left"}>
+                                <Typography
+                                    fontWeight={"bold"}
+                                    fontSize={"0.8rem"}
+                                    // sx={{ color: "primary" }}
+                                >
+                                    John Cina
+                                </Typography>
+                            </Box>
+                            <ArrowDropDownOutlined
+                                sx={{
+                                    color: "primary",
+                                    fontSize: "25px",
+                                }}
+                            />
+                        </Button>
+                        <Menu
+                            anchorEl={anchorEl}
+                            open={isOpen}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                                verticle: "bottom",
+                                horizontal: "center",
+                            }}
+                        >
+                            <MenuItem onClick={handleClose}>LOG OUT</MenuItem>
+                        </Menu>
+                    </Box>
+                </Box>
             </Toolbar>
         </AppBar>
     );
