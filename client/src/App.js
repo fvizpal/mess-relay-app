@@ -1,8 +1,9 @@
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import HomePage from "scenes/HomePage";
-import LoginPage from "scenes/LoginPage";
+import Layout from "scenes/layout";
+import HomePage from "scenes/homePage";
+import LoginPage from "scenes/loginPage";
 
 function App() {
     const isAuth = Boolean(useSelector((state) => state.token));
@@ -10,11 +11,15 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<LoginPage />} />
-                    <Route
-                        path="/home"
-                        element={isAuth ? <HomePage /> : <Navigate to="/" />}
-                    />
+                    <Route element={<Layout />}>
+                        <Route path="/" element={<LoginPage />} />
+                        <Route
+                            path="/home"
+                            element={
+                                isAuth ? <HomePage /> : <Navigate to="/" />
+                            }
+                        />
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </div>
