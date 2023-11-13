@@ -22,8 +22,20 @@ function App() {
                                 // isAuth ? <HomePage /> : <Navigate to="/" />
                             }
                         />
-                        <Route path="/complaint" element={<ComplaintPage />} />
-                        <Route path="/menu" element={<MessMenu />} />
+                        <Route
+                            path="/complaint"
+                            element={
+                                <ComplaintPage />
+                                // isAuth ? <HomePage /> : <Navigate to="/" />
+                            }
+                        />
+                        <Route
+                            path="/menu"
+                            element={
+                                <MessMenu />
+                                // isAuth ? <HomePage /> : <Navigate to="/" />
+                            }
+                        />
                     </Route>
                 </Routes>
             </BrowserRouter>
