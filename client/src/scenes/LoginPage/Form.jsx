@@ -58,6 +58,9 @@ const Form = () => {
         for (let value in values) {
             formData.append(value, values[value]);
         }
+        for (const pair of formData.entries()) {
+            console.log(pair[0] + ", " + pair[1]);
+        }
 
         const savedUserResponse = await fetch(
             "http://localhost:3001/auth/register",
