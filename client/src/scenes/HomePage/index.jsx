@@ -8,21 +8,21 @@ const HomePage = () => {
 
     return (
         <Box>
-            {isAdmin && (
+            {isAdmin ? (
                 <>
                     <Typography>
                         HomePage content for admin will be here...
                     </Typography>
                     <Typography>will be done shortly</Typography>
                 </>
+            ) : (
+                <>
+                    <Typography>
+                        HomePage content for student will be here...
+                    </Typography>
+                    <Typography>will be done shortly</Typography>
+                </>
             )}
-
-            <Box>
-                <Typography>
-                    HomePage content for student will be here...
-                </Typography>
-                <Typography>will be done shortly</Typography>
-            </Box>
         </Box>
     );
 };
