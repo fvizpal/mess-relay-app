@@ -16,13 +16,18 @@ import {
     ArrowDropDownOutlined,
 } from "@mui/icons-material";
 
+import { setLogout } from "state";
+import { useDispatch, useSelector } from "react-redux";
+
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+    const dispatch = useDispatch();
+    const { firstName, lastName } = useSelector((state) => state.user);
+    const fullname = firstName + " " + lastName;
+
     const [anchorEl, setAnchorEl] = useState(null);
     const isOpen = Boolean(anchorEl);
     const handleClick = (event) => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null);
-
-    const handleLogout = () => {};
 
     return (
         <AppBar
@@ -77,7 +82,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                                     fontSize={"0.8rem"}
                                     // sx={{ color: "primary" }}
                                 >
-                                    John Cina
+                                    {fullname}
                                 </Typography>
                             </Box>
                             <ArrowDropDownOutlined
@@ -96,7 +101,9 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                                 horizontal: "center",
                             }}
                         >
-                            <MenuItem onClick={handleLogout}>LOG OUT</MenuItem>
+                            <MenuItem onClick={() => dispatch(setLogout())}>
+                                LOG OUT
+                            </MenuItem>
                         </Menu>
                     </Box>
                 </Box>

@@ -1,6 +1,7 @@
 import React from "react";
 import {
     Box,
+    Divider,
     Drawer,
     IconButton,
     List,
@@ -84,7 +85,9 @@ const Sidebar = ({
                                         <ListItemIcon>
                                             <HomeOutlined />
                                         </ListItemIcon>
-                                        <ListItemText primary={"Dashboard"} />
+                                        <ListItemText
+                                            primary={"AdminDashboard"}
+                                        />
                                     </ListItemButton>
                                 </ListItem>
                                 <ListItem>
@@ -156,6 +159,35 @@ const Sidebar = ({
                                 </ListItem>
                             </List>
                         )}
+                    </Box>
+                    <Box position={"absolute"} bottom={"2rem"}>
+                        <Divider />
+                        <Box
+                            display={"flex"}
+                            justifyContent={"space-between"}
+                            alignItems={"center"}
+                        >
+                            <ListItemButton
+                                onClick={() => {
+                                    window.open(
+                                        "https://sac.mnnit.ac.in/codesangam",
+                                        "_blank"
+                                    );
+                                }}
+                            >
+                                <ListItemText primary={"CodeSangam"} />
+                            </ListItemButton>
+                            <ListItemButton
+                                onClick={() => {
+                                    window.open(
+                                        "https://mnnit.ac.in",
+                                        "_blank"
+                                    );
+                                }}
+                            >
+                                <ListItemText primary={"MNNIT"} />
+                            </ListItemButton>
+                        </Box>
                     </Box>
                 </Drawer>
             )}

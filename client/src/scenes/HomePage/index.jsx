@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import Header from "components/Header";
 
 const HomePage = () => {
-    const user = useSelector((state) => state.user);
-    const isAdmin = true || Boolean(user.role === "admin");
-
+    // const user =
+    const { firstName, role } = useSelector((state) => state.user);
+    const isAdmin = role === "admin";
+    const subtitle = "Welcome " + firstName + "!";
     return (
         <Box m="1.5rem 2.5rem">
             <Box
@@ -14,20 +15,20 @@ const HomePage = () => {
                 justifyContent={"space-between"}
                 alignItems={"center"}
             >
-                <Header title="DASHBOARD" subtitle="Welcome John" />
+                <Header title="DASHBOARD" subtitle={subtitle} />
             </Box>
 
             {isAdmin ? (
                 <>
                     <Typography>
-                        HomePage content for admin will be here...
+                        HomePage content for {firstName} will be here...
                     </Typography>
                     <Typography>will be done shortly</Typography>
                 </>
             ) : (
                 <>
                     <Typography>
-                        HomePage content for student will be here...
+                        HomePage content for student {firstName} will be here...
                     </Typography>
                     <Typography>will be done shortly</Typography>
                 </>
