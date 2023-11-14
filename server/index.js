@@ -11,9 +11,16 @@ import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/auth.js";
 
-//importing models
-import Menu from "./models/menu.js";
-import MenuRoutes from "./routes/menuRoutes.js"
+//importing routes
+//menu routes
+import AdminMenuRoutes from "./routes/Admin/menuRoutes.js"
+import StundentMenuRoutes from "./routes/Student/MenuRoutes.js";
+// complaint box routes
+import StundentComplaintRoutes from "./routes/Student/ComplaintRoutes.js";
+import AdminComplaintRoutes from "./routes/Admin/complaintRoutes.js";
+// notice board routes
+import AdminNoticeRoutes from "./routes/Admin/NoticeRoutes.js";
+import StudentNoticeRoutes from "./routes/Student/NoticeRoutes.js";
 
 import { verifyToken } from "./middleware/auth.js";
 import { connect } from "http2";
@@ -27,7 +34,6 @@ const app = express();
 //MiddleWares
 app.use(express.json());  
 app.use(express.urlencoded({extended:false}));
-app.use(MenuRoutes);       // for using routes of Menu
 
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -39,6 +45,17 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
  
 /* Routes */
 app.use("/auth", authRoutes);
+
+//menu
+app.use(AdminMenuRoutes); 
+app.use(StundentMenuRoutes);    
+//complaint
+app.use(StundentComplaintRoutes);
+app.use(AdminComplaintRoutes);
+//notice
+app.use(AdminNoticeRoutes);
+app.use(StudentNoticeRoutes);
+
 
 
 // MONGOOSE SETUP (firstly connect the database then fire the server)
@@ -54,17 +71,8 @@ mongoose.connect(process.env.MONGO_URL)
 
 
 // ROUTES 
-// get req
 app.get("/", (req,res)=>{
     res.send("This is HomePage");
-})
-
-app.get("/login", (req,res)=>{
-    res.send("This is LoginPage");
-})
-
-app.get("/register", (req,res)=>{
-    res.send("This is registerPage");
 })
 
 app.get("/contact", (req,res)=>{
@@ -75,4 +83,7 @@ app.get("/admin", (req,res)=>{
     res.send("This is Admin Portal");
 })
 
+app.get("/user", (req,res)=>{
+    res.send("This is User Portal");
+})
 

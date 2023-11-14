@@ -4,9 +4,11 @@ import User from "../models/User.js";
 
 /* REGISTER */
 export const register = async (req, res) => {
+    const { firstName, lastName, email, password, role, hostel } = req.body;
+    if(!firstName || !email || !password || !role || !hostel){
+        return res.send("Please, Fill all the required Fields !");
+    }
     try {
-        const { firstName, lastName, email, password, role, hostel } = req.body;
-
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
 

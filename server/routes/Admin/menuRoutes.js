@@ -1,6 +1,6 @@
 import express from "express";
 
-import {viewMenu, addItemToMenu, viewDayMenu, deleteMenu, deleteDayMenu} from "../controllers/MenuCtrl.js";
+import {viewMenu, addItemToMenu, viewDayMenu, deleteMenu, deleteDayMenu, updateDayMenu} from "../../controllers/Admin/MenuCtrl.js";
 const Router = express.Router();
 
 //get(View) Whole Menu
@@ -13,9 +13,12 @@ Router.post("/admin/setmenu", addItemToMenu);
 Router.get("/admin/getMenu/:Day", viewDayMenu);
 
 //Delete Menu(All Days)
-Router.delete("admin/deleteMenu", deleteMenu);
+Router.delete("/admin/deleteMenu", deleteMenu);
 
 //Delete single day menu
-Router.delete("admin/deleteDayMenu/:Day", deleteDayMenu);
+Router.delete("/admin/deleteDayMenu/:Day", deleteDayMenu);
+
+//Update a Day Menu(Using Patch u can update a single property of your Menu)
+Router.patch("/admin/updateMenu/:Day", updateDayMenu);
 
 export default Router;

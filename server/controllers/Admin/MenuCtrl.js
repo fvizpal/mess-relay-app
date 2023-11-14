@@ -1,4 +1,4 @@
-import Menu from "../models/menu.js";
+import Menu from "../../models/menu.js";
 
 // add a new item to menu
 export const addItemToMenu = async(req,res) => {
@@ -43,7 +43,7 @@ export const viewDayMenu = async(req,res) => {
 export const deleteMenu = async(req, res)=>{
     try{
         // empty object to delete all
-        await Menu.deletemany({});
+        await Menu.deleteMany({});
         res.send("All Days Menu Deleted");
     }
     catch(err){
@@ -64,3 +64,20 @@ export const deleteDayMenu = async(req, res)=>{
     }
 } 
 
+// Update a Day's menu
+export const updateDayMenu = async(req,res)=>{
+    try{
+        const day = req.params.Day;
+        console.log(day);
+        const updatedData= await Menu.updateOne(
+            {Day:day}, req.body, {new : true} 
+        )
+        if(!updatedData){
+            return res.send("No Field with the given value found !");
+        }
+        res.send(updatedData);
+    }
+    catch(err){
+        res.send({msg:err.message});
+    }
+}
