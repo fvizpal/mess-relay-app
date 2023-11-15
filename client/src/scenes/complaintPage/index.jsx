@@ -1,6 +1,6 @@
 import Header from "components/Header";
 import Form from "./Form";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 
 const ComplaintPage = () => {
     const isDesktop = useMediaQuery("(min-width: 1000px)");
