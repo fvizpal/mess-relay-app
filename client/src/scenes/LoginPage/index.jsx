@@ -1,5 +1,6 @@
 import Form from "./Form";
 import { Box, Typography, useMediaQuery } from "@mui/material";
+
 const LoginPage = () => {
     const isDesktop = useMediaQuery("(min-width: 1000px)");
     return (

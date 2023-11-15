@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 import Header from "components/Header";
 
 const HomePage = () => {
-    // const user =
     const { firstName, role } = useSelector((state) => state.user);
     const isAdmin = role === "admin";
     const subtitle = "Welcome " + firstName + "!";
+
     return (
         <Box m="1.5rem 2.5rem">
             <Box
