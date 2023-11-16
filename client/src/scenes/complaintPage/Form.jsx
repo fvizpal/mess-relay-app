@@ -52,7 +52,7 @@ const Form = () => {
         // }
 
         const savedUserResponse = await fetch(
-            "http://localhost:3001/complaint",
+            "http://localhost:3001/student/complaint",
             {
                 method: "POST",
                 body: formData,

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const complaintSchema = mongoose.Schema(
+const ComplaintSchema = mongoose.Schema(
     {
         userId: {
             type: String,
@@ -15,6 +15,6 @@ const complaintSchema = mongoose.Schema(
     { timestaps: true }
 );
 
-const Complaint = mongoose.model("Complaint", complaintSchema);
+const Complaint = mongoose.model("Complaint", ComplaintSchema);
 
 export default Complaint;

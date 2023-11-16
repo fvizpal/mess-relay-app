@@ -13,6 +13,7 @@ import authRoutes from "./routes/auth.js";
 import studentRoutes from "./routes/student.js";
 import { register } from "./controllers/auth.js";
 import { postNotifs } from "./controllers/admin.js";
+import { postComplaint } from "./controllers/student.js";
 
 import { verifyToken } from "./middleware/auth.js";
 
@@ -44,6 +45,7 @@ const upload = multer({ storage });
 //Routes with files
 app.post("/auth/register", upload.single("picture"), register);
 app.post("/admin/notifs", upload.single("picture"), postNotifs);
+app.post("/student/complaint", upload.single("picture"), postComplaint);
 
 /* Routes */
 app.use("/auth", authRoutes);
