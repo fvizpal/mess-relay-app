@@ -4,6 +4,7 @@ import {
     Box,
     Button,
     TextField,
+    Typography,
     useMediaQuery,
     // useTheme,
 } from "@mui/material";
@@ -11,6 +12,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import * as yup from "yup";
+import Dropzone from "react-dropzone";
+import { setComplaints } from "state";
 
 const complaintSchema = yup.object().shape({
     firstName: yup.string().required("Required"),
@@ -18,6 +21,7 @@ const complaintSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Required"),
     description: yup.string().required("Required"),
     room: yup.string().required("Required"),
+    picture: yup.string(),
 });
 
 const initialComplaintValues = {
@@ -26,11 +30,14 @@ const initialComplaintValues = {
     email: "",
     description: "",
     room: "",
+    picture: "",
 };
 
 const Form = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [hasComplained, setHasComplained] = useState(false);
 
     const isDesktop = useMediaQuery("(min-width:600px)");
 
@@ -39,6 +46,7 @@ const Form = () => {
         for (let value in values) {
             formData.append(value, values[value]);
         }
+        formData.append("picturePath", values.picture.name);
         // for (const pair of formData.entries()) {
         //     console.log(pair[0] + ", " + pair[1]);
         // }
@@ -54,6 +62,15 @@ const Form = () => {
         const savedComplaint = await savedUserResponse.json();
         console.log(savedComplaint);
         onSubmitProps.resetForm();
+        if (savedComplaint) {
+            dispatch(
+                setComplaints({
+                    complaints: savedComplaint.complaint,
+                })
+            );
+            navigate("/complaint");
+            setHasComplained(true);
+        }
     };
 
     const handleFormSubmit = async (values, onSubmitProps) => {
@@ -146,6 +163,41 @@ const Form = () => {
                                 touched.description && errors.description
                             }
                         />
+                        <Box
+                            border={"1px solid primary"}
+                            borderRadius={"5px"}
+                            p={"1rem"}
+                        >
+                            <Dropzone
+                                acceptedFiles=".jpg,.jpeg,.png"
+                                multiple={false}
+                                onDrop={(acceptedFiles) => {
+                                    setFieldValue("picture", acceptedFiles[0]);
+                                }}
+                            >
+                                {({ getRootProps, getInputProps }) => (
+                                    <Box
+                                        {...getInputProps()}
+                                        border={"2px solid primary"}
+                                        p={"1rem"}
+                                        sx={{
+                                            "&:hover": {
+                                                cursor: "pointer",
+                                            },
+                                        }}
+                                    >
+                                        <input {...getInputProps()} />
+                                        {!values.picture ? (
+                                            <p>Add Picture Here</p>
+                                        ) : (
+                                            <Typography>
+                                                {values.picture.name}
+                                            </Typography>
+                                        )}
+                                    </Box>
+                                )}
+                            </Dropzone>
+                        </Box>
                     </Box>
 
                     <Box>
@@ -162,6 +214,13 @@ const Form = () => {
                         >
                             SUBMIT
                         </Button>
+                        {hasComplained && (
+                            <>
+                                <Typography>
+                                    Complaint registered successfully
+                                </Typography>
+                            </>
+                        )}
                     </Box>
                 </form>
             )}

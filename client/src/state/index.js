@@ -4,6 +4,7 @@ const initialState = {
     user: null,
     token: null,
     notifs: [],
+    complaints: [],
 };
 
 export const authSlice = createSlice({
@@ -21,8 +22,12 @@ export const authSlice = createSlice({
         setNotifs: (state, action) => {
             state.notifs = action.payload.notifs;
         },
+        setComplaints: (state, action) => {
+            state.complaints = action.payload.complaints;
+        },
     },
 });
 
-export const { setLogin, setLogout, setNotifs } = authSlice.actions;
+export const { setLogin, setLogout, setNotifs, setComplaints } =
+    authSlice.actions;
 export default authSlice.reducer;
