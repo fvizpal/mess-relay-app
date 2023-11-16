@@ -9,6 +9,7 @@ const complaintSchema = mongoose.Schema(
         description: String,
         picturePath: String,
         upvotes: Number,
+        downvotes: Number,
         resolved: Boolean,
     },
     { timestaps: true }

@@ -9,6 +9,6 @@ export const postNotifs = async (req, res) => {
 
         res.status(201).json(newNotice);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(409).json({ message: err.message });
     }
 };
