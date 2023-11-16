@@ -11,7 +11,6 @@ const Layout = () => {
     const isDesktop = useMediaQuery("(min-width: 600px)");
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const user = useSelector((state) => state.user);
-    console.log(user);
     const { role } = user;
     const isAdmin = role === "admin";
 

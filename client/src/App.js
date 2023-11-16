@@ -18,22 +18,22 @@ function App() {
                         <Route
                             path="/home"
                             element={
-                                <HomePage />
-                                // isAuth ? <HomePage /> : <Navigate to="/" />
+                                // <HomePage />
+                                isAuth ? <HomePage /> : <Navigate to="/" />
                             }
                         />
                         <Route
                             path="/complaint"
                             element={
-                                <ComplaintPage />
-                                // isAuth ? <ComplaintPage /> : <Navigate to="/" />
+                                // <ComplaintPage />
+                                isAuth ? <ComplaintPage /> : <Navigate to="/" />
                             }
                         />
                         <Route
                             path="/menu"
                             element={
-                                <MessMenu />
-                                // isAuth ? <MessMenu /> : <Navigate to="/" />
+                                // <MessMenu />
+                                isAuth ? <MessMenu /> : <Navigate to="/" />
                             }
                         />
                     </Route>

@@ -9,9 +9,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/auth.js";
-import adminRoutes from "./routes/admin.js";
+// import adminRoutes from "./routes/admin.js";
 import studentRoutes from "./routes/student.js";
 import { register } from "./controllers/auth.js";
+import { postNotifs } from "./controllers/admin.js";
 
 import { verifyToken } from "./middleware/auth.js";
 
@@ -42,10 +43,11 @@ const upload = multer({ storage });
 
 //Routes with files
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/admin/notifs", upload.single("picture"), postNotifs);
 
 /* Routes */
 app.use("/auth", authRoutes);
-app.use("/admin", adminRoutes);
+// app.use("/admin", adminRoutes);
 app.use("/student", studentRoutes);
 
 // MONGOOSE SETUP

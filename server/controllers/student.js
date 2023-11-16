@@ -1,4 +1,4 @@
-import Notifs from "../models/Notifs";
+import Notifs from "../models/Notifs.js";
 
 export const getNotifs = async (req, res) => {
     try {
