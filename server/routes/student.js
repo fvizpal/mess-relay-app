@@ -1,8 +1,10 @@
 import express from "express";
-import { getNotifs } from "../controllers/student.js";
+import { getComplaints, getNotifs } from "../controllers/student.js";
 
 const router = express.Router();
 
 router.get("/notifs", getNotifs);
+
+router.get("/complaints", getComplaints);
 
 export default router;

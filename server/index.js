@@ -10,7 +10,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/auth.js";
-// import adminRoutes from "./routes/admin.js";
+import adminRoutes from "./routes/admin.js";
 import studentRoutes from "./routes/student.js";
 import { register } from "./controllers/auth.js";
 import { postNotifs } from "./controllers/admin.js";
@@ -52,7 +52,7 @@ app.post("/student/complaint", upload.single("picture"), postComplaint);
 
 /* Routes */
 app.use("/auth", authRoutes);
-// app.use("/admin", adminRoutes);
+app.use("/admin", adminRoutes);
 app.use("/student", studentRoutes);
 
 // MONGOOSE SETUP

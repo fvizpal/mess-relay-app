@@ -10,6 +10,15 @@ export const getNotifs = async (req, res) => {
     }
 };
 
+export const getComplaints = async (req, res) => {
+    try {
+        const complaints = await Complaint;
+        res.status(200).json(complaints);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
 export const postComplaint = async (req, res) => {
     try {
         const { fullName, email, room, description, picturePath } = req.body;

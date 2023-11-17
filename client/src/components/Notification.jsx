@@ -7,7 +7,7 @@ const Notification = () => {
     const dispatch = useDispatch();
     const notifs = useSelector((state) => state.notifs);
     const { role } = useSelector((state) => state.user);
-    const isAdmin = true; //role === "admin";
+    const isAdmin = role === "admin";
 
     const getNotification = async () => {
         const response = await fetch("http://localhost:3001/student/notifs", {

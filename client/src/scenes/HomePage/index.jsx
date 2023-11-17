@@ -22,9 +22,7 @@ const HomePage = () => {
 
             {isAdmin ? (
                 <>
-                    <Typography>
-                        HomePage content for Admin {firstName} will be here...
-                    </Typography>
+                    <Notification />
                     <AddNotification />
                 </>
             ) : (
