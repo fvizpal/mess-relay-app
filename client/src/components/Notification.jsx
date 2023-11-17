@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setNotifs } from "state";
 import Notif from "./Notif";
+import { Box } from "@mui/material";
 
 const Notification = () => {
     const dispatch = useDispatch();
     const notifs = useSelector((state) => state.notifs);
     const { role } = useSelector((state) => state.user);
-    const isAdmin = role === "admin";
+    const isAdmin = true; //role === "admin";
 
     const getNotification = async () => {
         const response = await fetch("http://localhost:3001/student/notifs", {
@@ -22,7 +23,7 @@ const Notification = () => {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <>
+        <Box borderRadius={"2rem"}>
             {notifs.map(({ _id, description }) => (
                 <Notif
                     key={_id}
@@ -31,7 +32,7 @@ const Notification = () => {
                     isAdmin={isAdmin}
                 />
             ))}
-        </>
+        </Box>
     );
 };
 
