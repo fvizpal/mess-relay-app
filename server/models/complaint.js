@@ -2,12 +2,20 @@ import mongoose from "mongoose";
 
 const ComplaintSchema = mongoose.Schema(
     {
-        userId: {
+        fullName: String,
+        email: String,
+        room: {
+            type: Number,
+            required: true,
+        },
+        description: {
             type: String,
             required: true,
         },
-        description: String,
-        picturePath: String,
+        picturePath: {
+            type: String,
+            default: "",
+        },
         upvotes: Number,
         downvotes: Number,
         resolved: Boolean,

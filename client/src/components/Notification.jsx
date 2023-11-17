@@ -21,13 +21,15 @@ const Notification = () => {
         getNotification();
     }, []);
 
-    return (
-        <>
-            {notifs.map(({ _id, description }) => (
-                <Notif key={_id} notifId={_id} description={description} />
-            ))}
-        </>
-    );
+    console.log(notifs);
+
+    // return (
+    //     // <>
+    //     //     {notifs.map(({ _id, description }) => (
+    //     //         <Notif key={_id} notifId={_id} description={description} />
+    //     //     ))}
+    //     // </>
+    // );
 };
 
 export default Notification;

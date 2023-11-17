@@ -8,7 +8,7 @@ import {
     useMediaQuery,
     // useTheme,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import * as yup from "yup";
@@ -16,18 +16,12 @@ import Dropzone from "react-dropzone";
 import { setComplaints } from "state";
 
 const complaintSchema = yup.object().shape({
-    firstName: yup.string().required("Required"),
-    lastName: yup.string().required("Required"),
-    email: yup.string().email("Invalid email").required("Required"),
     description: yup.string().required("Required"),
     room: yup.string().required("Required"),
     picture: yup.string(),
 });
 
 const initialComplaintValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
     description: "",
     room: "",
     picture: "",
@@ -36,6 +30,9 @@ const initialComplaintValues = {
 const Form = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const { firstName, lastName, email } = useSelector((state) => state.user);
+    const fullName = firstName + " " + lastName;
 
     const [hasComplained, setHasComplained] = useState(false);
 
@@ -47,9 +44,11 @@ const Form = () => {
             formData.append(value, values[value]);
         }
         formData.append("picturePath", values.picture.name);
-        // for (const pair of formData.entries()) {
-        //     console.log(pair[0] + ", " + pair[1]);
-        // }
+        formData.append("fullName", fullName);
+        formData.append("email", email);
+        for (const pair of formData.entries()) {
+            console.log(pair[0] + ", " + pair[1]);
+        }
 
         const savedUserResponse = await fetch(
             "http://localhost:3001/student/complaint",
@@ -104,41 +103,6 @@ const Form = () => {
                         }}
                     >
                         <TextField
-                            label="First Name"
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            value={values.firstName}
-                            name="firstName"
-                            error={
-                                Boolean(touched.firstName) &&
-                                Boolean(errors.firstName)
-                            }
-                            helperText={touched.firstName && errors.firstName}
-                        />
-                        <TextField
-                            label="Last Name"
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            value={values.lastName}
-                            name="lastName"
-                            error={
-                                Boolean(touched.lastName) &&
-                                Boolean(errors.lastName)
-                            }
-                            helperText={touched.lastName && errors.lastName}
-                        />
-                        <TextField
-                            label="Email"
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            value={values.email}
-                            name="email"
-                            error={
-                                Boolean(touched.email) && Boolean(errors.email)
-                            }
-                            helperText={touched.email && errors.email}
-                        />
-                        <TextField
                             label="Room number"
                             onBlur={handleBlur}
                             onChange={handleChange}
@@ -171,15 +135,15 @@ const Form = () => {
                             <Dropzone
                                 acceptedFiles=".jpg,.jpeg,.png"
                                 multiple={false}
-                                onDrop={(acceptedFiles) => {
-                                    setFieldValue("picture", acceptedFiles[0]);
-                                }}
+                                onDrop={(acceptedFiles) =>
+                                    setFieldValue("picture", acceptedFiles[0])
+                                }
                             >
                                 {({ getRootProps, getInputProps }) => (
                                     <Box
-                                        {...getInputProps()}
-                                        border={"2px solid primary"}
-                                        p={"1rem"}
+                                        {...getRootProps()}
+                                        border={`2px dashed primary`}
+                                        p="1rem"
                                         sx={{
                                             "&:hover": {
                                                 cursor: "pointer",
@@ -190,9 +154,12 @@ const Form = () => {
                                         {!values.picture ? (
                                             <p>Add Picture Here</p>
                                         ) : (
-                                            <Typography>
-                                                {values.picture.name}
-                                            </Typography>
+                                            <Box>
+                                                <Typography>
+                                                    {values.picture.name}
+                                                </Typography>
+                                                {/* <EditOutlinedIcon /> */}
+                                            </Box>
                                         )}
                                     </Box>
                                 )}
