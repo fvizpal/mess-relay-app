@@ -15,3 +15,16 @@ export const postNotifs = async (req, res) => {
         res.status(409).json({ message: err.message });
     }
 };
+
+export const deleteNotifs = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const notifToDelete = await Notifs.findById(id);
+
+        await notifToDelete.remove();
+
+        res.status(200).json({ message: "Notif deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};

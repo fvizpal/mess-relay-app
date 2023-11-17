@@ -7,7 +7,7 @@ const Notification = () => {
     const dispatch = useDispatch();
     const notifs = useSelector((state) => state.notifs);
     const { role } = useSelector((state) => state.user);
-    const isAdmin = role === "admin";
+    const isAdmin = true; //role === "admin";
 
     const getNotification = async () => {
         const response = await fetch("http://localhost:3001/student/notifs", {
@@ -20,8 +20,6 @@ const Notification = () => {
     useEffect(() => {
         getNotification();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-    console.log(notifs);
 
     return (
         <>
