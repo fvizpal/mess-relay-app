@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
+import { DeleteOutlineOutlined } from "@mui/icons-material";
 
-const Notif = ({ notifId, description }) => {
+const Notif = ({ notifId, description, isAdmin }) => {
     return (
         <Box
             padding={"1.5rem 1.5rem 0.75rem 1.5rem"}
@@ -9,6 +10,15 @@ const Notif = ({ notifId, description }) => {
             margin={"2rem 0"}
         >
             <Typography sx={{ mt: "1rem" }}>{description}</Typography>
+            {isAdmin && (
+                <>
+                    <Box>
+                        <IconButton>
+                            <DeleteOutlineOutlined />
+                        </IconButton>
+                    </Box>
+                </>
+            )}
         </Box>
     );
 };

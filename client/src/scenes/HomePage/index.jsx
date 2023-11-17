@@ -29,9 +29,6 @@ const HomePage = () => {
                 </>
             ) : (
                 <>
-                    <Typography>
-                        HomePage content for student {firstName} will be here...
-                    </Typography>
                     <Notification />
                 </>
             )}
