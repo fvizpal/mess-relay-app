@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import Header from "components/Header";
 import AddNotification from "components/AddNotification";
@@ -22,22 +22,43 @@ const HomePage = () => {
             >
                 <Header title="DASHBOARD" subtitle={subtitle} />
             </Box>
-            <Box>
-                <AllComplaints />
+            <Box
+                width={"inherit"}
+                padding={"2rem 6%"}
+                display={isDesktop ? "flex" : "block"}
+                justifyContent={"space-between"}
+                gap={"0.5rem"}
+            >
+                <Box
+                    border={"1px solid "}
+                    borderRadius={"1rem"}
+                    padding={"1rem 1rem 1rem 1rem"}
+                    flexBasis={isDesktop ? "60%" : undefined}
+                    mt={isDesktop ? undefined : "2rem"}
+                >
+                    <AllComplaints />
+                </Box>
+                <Box flexBasis={"30%"}>
+                    <Notification />
+                    <Typography>i will have notifications here</Typography>
+                    <Box
+                        borderRadius={"5px"}
+                        border={"1px solid"}
+                        marginTop={"10rem"}
+                        padding={"1rem 1rem 1rem 1rem"}
+                    >
+                        {isAdmin ? (
+                            <>
+                                <AddNotification />
+                            </>
+                        ) : (
+                            <>
+                                <MealRating />
+                            </>
+                        )}
+                    </Box>
+                </Box>
             </Box>
-            <Box>
-                <Notification />
-            </Box>
-
-            {isAdmin ? (
-                <>
-                    <AddNotification />
-                </>
-            ) : (
-                <>
-                    <MealRating />
-                </>
-            )}
         </Box>
     );
 };

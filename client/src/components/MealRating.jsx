@@ -19,7 +19,7 @@ const MealRating = () => {
 
     return (
         <>
-            <Typography>Rate your last meal</Typography>
+            <Typography variant="h5">Rate your last meal</Typography>
             <Box
                 sx={{
                     width: 200,

@@ -5,11 +5,13 @@ import {
     ThumbUpAltOutlined,
     ThumbDownOffAltOutlined,
     ThumbDownAltOutlined,
+    TaskAltOutlined,
 } from "@mui/icons-material";
 
 const Complaint = ({
     complaintId,
     fullName,
+    hostel,
     room,
     description,
     picturePath,

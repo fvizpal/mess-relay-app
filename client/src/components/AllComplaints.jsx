@@ -32,6 +32,7 @@ const AllComplaints = () => {
                     _id,
                     fullName,
                     email,
+                    hostel,
                     room,
                     description,
                     picturePath,
@@ -43,6 +44,7 @@ const AllComplaints = () => {
                         key={_id}
                         complaintId={_id}
                         fullName={fullName}
+                        hostel={hostel}
                         room={room}
                         description={description}
                         picturePath={picturePath}

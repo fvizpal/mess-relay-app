@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setNotifs } from "state";
 import Notif from "./Notif";
+import { Box } from "@mui/material";
 
 const Notification = () => {
     const dispatch = useDispatch();
@@ -9,29 +10,32 @@ const Notification = () => {
     const { role } = useSelector((state) => state.user);
     const isAdmin = role === "admin";
 
-    const getNotification = async () => {
-        const response = await fetch("http://localhost:3001/student/notifs", {
-            method: "GET",
-        });
+    const getNotifs = async () => {
+        const response = await fetch(
+            "http://localhost:3001/student/complaints",
+            {
+                method: "GET",
+            }
+        );
         const data = await response.json();
-        dispatch(setNotifs({ notifs: data }));
+        dispatch(setNotifs({ complaints: data }));
     };
 
     useEffect(() => {
-        getNotification();
+        getNotifs();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <>
-            {notifs.map(({ _id, description }) => (
+        <Box>
+            {/* {notifs.map(({ _id, description }) => (
                 <Notif
                     key={_id}
                     notifId={_id}
                     description={description}
                     isAdmin={isAdmin}
                 />
-            ))}
-        </>
+            ))} */}
+        </Box>
     );
 };
 

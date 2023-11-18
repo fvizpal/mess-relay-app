@@ -31,6 +31,8 @@ const AddNotification = () => {
                     borderRadius: "2rem",
                     padding: "1rem 2rem",
                 }}
+                multiline
+                maxRows={8}
             />
             <Button disabled={!notif} onClick={handleNotif}>
                 NOTIFY

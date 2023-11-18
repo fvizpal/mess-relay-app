@@ -32,7 +32,9 @@ const Form = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { firstName, lastName, email } = useSelector((state) => state.user);
+    const { firstName, lastName, email, hostel } = useSelector(
+        (state) => state.user
+    );
     const fullName = firstName + " " + lastName;
 
     const [hasComplained, setHasComplained] = useState(false);
@@ -47,6 +49,7 @@ const Form = () => {
         formData.append("picturePath", values.picture.name);
         formData.append("fullName", fullName);
         formData.append("email", email);
+        formData.append("hostel", hostel);
         // for (const pair of formData.entries()) {
         //     console.log(pair[0] + ", " + pair[1]);
         // }
@@ -127,6 +130,8 @@ const Form = () => {
                             helperText={
                                 touched.description && errors.description
                             }
+                            multiline
+                            maxRows={4}
                         />
                         <Box
                             border={"1px solid primary"}

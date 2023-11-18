@@ -15,7 +15,11 @@ const Layout = () => {
     const isAdmin = role === "admin";
 
     return (
-        <Box display={isDesktop ? "flex" : "block"} width="100%" height="100%">
+        <Box
+            display={isDesktop ? "flex" : "block"}
+            width="100%"
+            height={"100%"}
+        >
             <Sidebar
                 isAdmin={isAdmin}
                 isDesktop={isDesktop}

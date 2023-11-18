@@ -4,6 +4,7 @@ const ComplaintSchema = mongoose.Schema(
     {
         fullName: String,
         email: String,
+        hostel: String,
         room: {
             type: Number,
             required: true,

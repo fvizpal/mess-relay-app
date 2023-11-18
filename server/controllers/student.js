@@ -21,11 +21,13 @@ export const getComplaints = async (req, res) => {
 
 export const postComplaint = async (req, res) => {
     try {
-        const { fullName, email, room, description, picturePath } = req.body;
+        const { fullName, email, hostel, room, description, picturePath } =
+            req.body;
 
         const newComplaint = new Complaint({
             fullName,
             email,
+            hostel,
             room,
             description,
             picturePath,
