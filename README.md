@@ -42,9 +42,9 @@
 - User can update the mess menu.
 
 ## 🚀 More Features to Add-on
-- User can rate their meals, all seperately.
-- User can manage their daily expenses and track their money spent.
-- User can add/update/delete daily orders.
+- Students can rate their meals, all seperately.
+- Admin can manage their daily expenses and track their money spent.
+- Admin can add/update/delete daily orders.
 
 Team Name: ye-shaam-mastani
 
