@@ -24,8 +24,8 @@ const Notif = ({ notifId, description, isAdmin }) => {
     return (
         <Box
             padding={"1.5rem 1.5rem 0.75rem 1.5rem"}
-            borderRadius={"0.5rem"}
-            margin={"2rem 0"}
+            borderRadius={"0.75rem"}
+            m={"2rem 0"}
         >
             <Typography sx={{ mt: "1rem" }}>{description}</Typography>
             {isAdmin && (

@@ -7,6 +7,7 @@ import {
     Typography,
     useMediaQuery,
     // useTheme,
+    Alert,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +18,7 @@ import { setComplaints } from "state";
 
 const complaintSchema = yup.object().shape({
     description: yup.string().required("Required"),
-    room: yup.string().required("Required"),
+    room: yup.number().required("Required"),
     picture: yup.string(),
 });
 
@@ -59,7 +60,7 @@ const Form = () => {
         );
         // console.log(savedUserResponse);
         const savedComplaint = await savedUserResponse.json();
-        console.log(savedComplaint);
+
         onSubmitProps.resetForm();
         if (savedComplaint) {
             dispatch(
@@ -183,9 +184,9 @@ const Form = () => {
                         </Button>
                         {hasComplained && (
                             <>
-                                <Typography>
-                                    Complaint registered successfully
-                                </Typography>
+                                <Alert variant="filled" severity="success">
+                                    Complaint registered Successfully
+                                </Alert>
                             </>
                         )}
                     </Box>

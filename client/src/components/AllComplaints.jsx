@@ -34,7 +34,7 @@ const AllComplaints = () => {
                     email,
                     room,
                     description,
-                    picturepath,
+                    picturePath,
                     upvotes,
                     downvotes,
                     resolved,
@@ -45,7 +45,7 @@ const AllComplaints = () => {
                         fullName={fullName}
                         room={room}
                         description={description}
-                        picturepath={picturepath}
+                        picturePath={picturePath}
                         upvotes={upvotes}
                         downvotes={downvotes}
                         resolved={resolved}

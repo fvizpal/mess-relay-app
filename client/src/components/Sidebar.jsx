@@ -16,6 +16,8 @@ import {
     ChevronLeft,
     ReceiptLongOutlined,
     CalendarMonthOutlined,
+    SchoolOutlined,
+    FestivalOutlined,
 } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
@@ -74,99 +76,89 @@ const Sidebar = ({
                                 )}
                             </Box>
                         </Box>
-                        {isAdmin ? (
-                            <List>
-                                <ListItem>
-                                    <ListItemButton
-                                        onClick={() => {
-                                            navigate(`/home`);
-                                        }}
-                                    >
-                                        <ListItemIcon>
-                                            <HomeOutlined />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={"AdminDashboard"}
-                                        />
-                                    </ListItemButton>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemButton
-                                        onClick={() => {
-                                            navigate(`/complaint`);
-                                        }}
-                                    >
-                                        <ListItemIcon>
-                                            <ReceiptLongOutlined />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={"Raise Complaint"}
-                                        />
-                                    </ListItemButton>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemButton
-                                        onClick={() => {
-                                            navigate(`/menu`);
-                                        }}
-                                    >
-                                        <ListItemIcon>
-                                            <CalendarMonthOutlined />
-                                        </ListItemIcon>
-                                        <ListItemText primary={"Mess Menu"} />
-                                    </ListItemButton>
-                                </ListItem>
-                            </List>
-                        ) : (
-                            <List>
-                                <ListItem>
-                                    <ListItemButton
-                                        onClick={() => {
-                                            navigate(`/home`);
-                                        }}
-                                    >
-                                        <ListItemIcon>
-                                            <HomeOutlined />
-                                        </ListItemIcon>
-                                        <ListItemText primary={"Dashboard"} />
-                                    </ListItemButton>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemButton
-                                        onClick={() => {
-                                            navigate(`/complaint`);
-                                        }}
-                                    >
-                                        <ListItemIcon>
-                                            <ReceiptLongOutlined />
-                                        </ListItemIcon>
-                                        <ListItemText
-                                            primary={"Raise Complaint"}
-                                        />
-                                    </ListItemButton>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemButton
-                                        onClick={() => {
-                                            navigate(`/menu`);
-                                        }}
-                                    >
-                                        <ListItemIcon>
-                                            <CalendarMonthOutlined />
-                                        </ListItemIcon>
-                                        <ListItemText primary={"Mess Menu"} />
-                                    </ListItemButton>
-                                </ListItem>
-                            </List>
-                        )}
+                        <Box marginTop={"6rem"}>
+                            {isAdmin ? (
+                                <List>
+                                    <ListItem>
+                                        <ListItemButton
+                                            onClick={() => {
+                                                navigate(`/home`);
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <HomeOutlined />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={"Admin Dashboard"}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemButton
+                                            onClick={() => {
+                                                navigate(`/menu`);
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <CalendarMonthOutlined />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={"Mess Menu"}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </List>
+                            ) : (
+                                <List>
+                                    <ListItem>
+                                        <ListItemButton
+                                            onClick={() => {
+                                                navigate(`/home`);
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <HomeOutlined />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={"Dashboard"}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemButton
+                                            onClick={() => {
+                                                navigate(`/complaint`);
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <ReceiptLongOutlined />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={"Raise Complaint"}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemButton
+                                            onClick={() => {
+                                                navigate(`/menu`);
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <CalendarMonthOutlined />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={"Mess Menu"}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
+                                </List>
+                            )}
+                        </Box>
                     </Box>
-                    <Box position={"absolute"} bottom={"2rem"}>
+                    <Box position={"absolute"} width={"100%"} bottom={"2rem"}>
                         <Divider />
-                        <Box
-                            display={"flex"}
-                            justifyContent={"space-between"}
-                            alignItems={"center"}
-                        >
+                        <Box marginTop={"2rem"}>
                             <ListItemButton
                                 onClick={() => {
                                     window.open(
@@ -175,6 +167,9 @@ const Sidebar = ({
                                     );
                                 }}
                             >
+                                <ListItemIcon>
+                                    <FestivalOutlined />
+                                </ListItemIcon>
                                 <ListItemText primary={"CodeSangam"} />
                             </ListItemButton>
                             <ListItemButton
@@ -185,6 +180,9 @@ const Sidebar = ({
                                     );
                                 }}
                             >
+                                <ListItemIcon>
+                                    <SchoolOutlined />
+                                </ListItemIcon>
                                 <ListItemText primary={"MNNIT"} />
                             </ListItemButton>
                         </Box>

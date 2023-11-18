@@ -12,6 +12,7 @@ import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import adminRoutes from "./routes/admin.js";
 import studentRoutes from "./routes/student.js";
+
 import { register } from "./controllers/auth.js";
 import { postNotifs } from "./controllers/admin.js";
 import { postComplaint } from "./controllers/student.js";
