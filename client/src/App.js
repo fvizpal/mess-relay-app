@@ -6,13 +6,13 @@ import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ComplaintPage from "scenes/complaintPage";
 import MessMenu from "scenes/messMenu";
-// import { useMemo } from "react";
-// import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-// import { themeSettings } from "./theme";
+import { useMemo } from "react";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { themeSettings } from "./theme";
 
 function App() {
-    // const mode = useSelector((state) => state.mode);
-    // const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+    const mode = useSelector((state) => state.mode);
+    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
     const isAuth = Boolean(useSelector((state) => state.token));
 
     return (
