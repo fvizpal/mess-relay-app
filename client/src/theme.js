@@ -60,7 +60,6 @@ export const colorTokens = {
         900: "#F57F17",
         1000: "#FFEB3B",
     },
-    // ... other color tokens as needed
 };
 
 // mui theme settings
