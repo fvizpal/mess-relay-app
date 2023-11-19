@@ -18,35 +18,39 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                {/* <ThemeProvider theme={theme}> */}
-                {/* <CssBaseline /> */}
-                <Routes>
-                    <Route path="/" element={<LoginPage />} />
-                    <Route element={<Layout />}>
-                        <Route
-                            path="/home"
-                            element={
-                                // <HomePage />
-                                isAuth ? <HomePage /> : <Navigate to="/" />
-                            }
-                        />
-                        <Route
-                            path="/complaint"
-                            element={
-                                // <ComplaintPage />
-                                isAuth ? <ComplaintPage /> : <Navigate to="/" />
-                            }
-                        />
-                        <Route
-                            path="/menu"
-                            element={
-                                // <MessMenu />
-                                isAuth ? <MessMenu /> : <Navigate to="/" />
-                            }
-                        />
-                    </Route>
-                </Routes>
-                {/* </ThemeProvider> */}
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Routes>
+                        <Route path="/" element={<LoginPage />} />
+                        <Route element={<Layout />}>
+                            <Route
+                                path="/home"
+                                element={
+                                    // <HomePage />
+                                    isAuth ? <HomePage /> : <Navigate to="/" />
+                                }
+                            />
+                            <Route
+                                path="/complaint"
+                                element={
+                                    // <ComplaintPage />
+                                    isAuth ? (
+                                        <ComplaintPage />
+                                    ) : (
+                                        <Navigate to="/" />
+                                    )
+                                }
+                            />
+                            <Route
+                                path="/menu"
+                                element={
+                                    // <MessMenu />
+                                    isAuth ? <MessMenu /> : <Navigate to="/" />
+                                }
+                            />
+                        </Route>
+                    </Routes>
+                </ThemeProvider>
             </BrowserRouter>
         </div>
     );
