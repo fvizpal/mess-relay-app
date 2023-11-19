@@ -24,7 +24,7 @@ const HomePage = () => {
             </Box>
             <Box
                 width={"inherit"}
-                padding={"2rem 6%"}
+                padding={"1rem 6%"}
                 display={isDesktop ? "flex" : "block"}
                 justifyContent={"space-between"}
                 gap={"0.5rem"}
@@ -40,11 +40,10 @@ const HomePage = () => {
                 </Box>
                 <Box flexBasis={"30%"}>
                     <Notification />
-                    <Typography>i will have notifications here</Typography>
                     <Box
-                        borderRadius={"5px"}
+                        borderRadius={"1rem"}
                         border={"1px solid"}
-                        marginTop={"10rem"}
+                        marginTop={"2rem"}
                         padding={"1rem 1rem 1rem 1rem"}
                     >
                         {isAdmin ? (

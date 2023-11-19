@@ -23,11 +23,14 @@ const Notif = ({ notifId, description, isAdmin }) => {
 
     return (
         <Box
-            padding={"1.5rem 1.5rem 0.75rem 1.5rem"}
-            borderRadius={"0.75rem"}
-            m={"2rem 0"}
+            borderRadius={"0.5rem"}
+            m={"1rem 0"}
+            ml={"1rem"}
+            // border={"1px solid"}
+            display={"flex"}
+            width="90%"
         >
-            <Typography sx={{ mt: "1rem" }}>{description}</Typography>
+            <Box>{description}</Box>
             {isAdmin && (
                 <>
                     <Box>

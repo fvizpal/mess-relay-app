@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setComplaints } from "state";
 import Complaint from "./Complaint";
+import { Typography } from "@mui/material";
 
 const AllComplaints = () => {
     const dispatch = useDispatch();
@@ -27,6 +28,15 @@ const AllComplaints = () => {
 
     return (
         <>
+            <Typography
+                variant="h6"
+                // margin={"1rem 1rem 1rem 1rem"}
+                sx={{
+                    textDecoration: "underline",
+                }}
+            >
+                ALL COMPLAINTS
+            </Typography>
             {complaints.map(
                 ({
                     _id,

@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Header from "components/Header";
+import MenuComp from "components/MenuComp";
 import React from "react";
 
 const MessMenu = () => {
@@ -8,7 +9,9 @@ const MessMenu = () => {
             <Box>
                 <Header title="MESS MENU" />
             </Box>
-            <Typography>Mess menu will be shown here ...</Typography>
+            <Box>
+                <MenuComp />
+            </Box>
         </Box>
     );
 };

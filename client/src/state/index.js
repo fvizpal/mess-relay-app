@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    mode: "light",
     user: null,
     token: null,
     notifs: [],
@@ -25,9 +26,22 @@ export const authSlice = createSlice({
         setComplaints: (state, action) => {
             state.complaints = action.payload.complaints;
         },
+        setUpdatedComplaint: (state, action) => {
+            const updatedComplaints = state.complaints.map((complaint) => {
+                if (complaint._id === action.payload.complaint._id)
+                    return action.payload.complaint;
+                return complaint;
+            });
+            state.complaints = updatedComplaints;
+        },
     },
 });
 
-export const { setLogin, setLogout, setNotifs, setComplaints } =
-    authSlice.actions;
+export const {
+    setLogin,
+    setLogout,
+    setNotifs,
+    setComplaints,
+    setUpdatedComplaint,
+} = authSlice.actions;
 export default authSlice.reducer;

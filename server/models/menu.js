@@ -7,10 +7,7 @@ const menuSchema = mongoose.Schema({
     },
     Breakfast: String,
     Lunch: String,
-    Snack: {
-        type: String,
-        default: "OFF",
-    },
+    Snack: String,
     Dinner: String,
 });
 

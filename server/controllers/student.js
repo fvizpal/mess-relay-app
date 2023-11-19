@@ -39,3 +39,37 @@ export const postComplaint = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+export const upvoteComplaint = async (req, res) => {
+    try {
+        const { upvote } = req.body;
+        const { id } = req.params;
+
+        const updatedComplaint = await Complaint.findByIdAndUpdate(
+            id,
+            { upvotes: upvote },
+            { new: true }
+        );
+
+        res.status(200).json(updatedComplaint);
+    } catch (err) {
+        res.status(404).json({ message: err.message });
+    }
+};
+
+export const downvoteComplaint = async (req, res) => {
+    try {
+        const { downvote } = req.body;
+        const { id } = req.params;
+
+        const updatedComplaint = await Complaint.findByIdAndUpdate(
+            id,
+            { downvotes: downvote },
+            { new: true }
+        );
+
+        res.status(200).json(updatedComplaint);
+    } catch (err) {
+        res.status(404).json({ message: err.message });
+    }
+};

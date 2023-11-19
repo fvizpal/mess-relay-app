@@ -17,8 +17,14 @@ const ComplaintSchema = mongoose.Schema(
             type: String,
             default: "",
         },
-        upvotes: Number,
-        downvotes: Number,
+        upvotes: {
+            type: Number,
+            default: 0,
+        },
+        downvotes: {
+            type: Number,
+            default: 0,
+        },
         resolved: Boolean,
     },
     { timestaps: true }

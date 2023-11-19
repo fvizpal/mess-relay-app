@@ -29,6 +29,10 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
     const handleClick = (event) => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null);
 
+    const handleLogout = () => {
+        dispatch(setLogout());
+    };
+
     return (
         <AppBar
             sx={{
@@ -101,9 +105,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                                 horizontal: "center",
                             }}
                         >
-                            <MenuItem onClick={() => dispatch(setLogout())}>
-                                LOG OUT
-                            </MenuItem>
+                            <MenuItem onClick={handleLogout}>LOG OUT</MenuItem>
                         </Menu>
                     </Box>
                 </Box>
