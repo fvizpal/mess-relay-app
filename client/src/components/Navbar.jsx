@@ -8,6 +8,7 @@ import {
     Button,
     Toolbar,
     IconButton,
+    useTheme,
 } from "@mui/material";
 import {
     Menu as MenuIcon,
@@ -16,10 +17,11 @@ import {
     ArrowDropDownOutlined,
 } from "@mui/icons-material";
 
-import { setLogout } from "state";
+import { setLogout, setMode } from "state";
 import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+    const theme = useTheme();
     const dispatch = useDispatch();
     const { firstName, lastName } = useSelector((state) => state.user);
     const fullname = firstName + " " + lastName;
@@ -62,9 +64,12 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                     justifyContent="space-between"
                     alignItems="center"
                 >
-                    <IconButton>
-                        <DarkModeOutlined />
-                        <LightModeOutlined />
+                    <IconButton onClick={() => dispatch(setMode())}>
+                        {theme.palette.mode === "dark" ? (
+                            <DarkModeOutlined />
+                        ) : (
+                            <LightModeOutlined />
+                        )}
                     </IconButton>
                     <Box
                         display="flex"

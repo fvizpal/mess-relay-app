@@ -1,13 +1,19 @@
 import express from "express";
 
-import {viewMenu, addItemToMenu, viewDayMenu, deleteMenu, deleteDayMenu} from "../controllers/MenuCtrl.js";
+import {
+    viewMenu,
+    addItemToMenu,
+    viewDayMenu,
+    deleteMenu,
+    deleteDayMenu,
+} from "../controllers/MenuCtrl.js";
 const Router = express.Router();
 
 //get(View) Whole Menu
 Router.get("/admin/getmenu", viewMenu);
 
 // create a menu
-Router.post("/admin/setmenu", addItemToMenu);
+Router.post("/setmenu", addItemToMenu);
 
 //to see Menu of a Day (we use the params(day) of our request)
 Router.get("/admin/getMenu/:Day", viewDayMenu);

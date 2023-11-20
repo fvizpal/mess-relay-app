@@ -1,6 +1,8 @@
 import Complaint from "../models/Complaint.js";
+import Menu from "../models/Menu.js";
 import Notifs from "../models/Notifs.js";
 
+//get Notifications
 export const getNotifs = async (req, res) => {
     try {
         const notifs = await Notifs.find();
@@ -10,6 +12,7 @@ export const getNotifs = async (req, res) => {
     }
 };
 
+// get complaints
 export const getComplaints = async (req, res) => {
     try {
         const complaints = await Complaint.find();
@@ -19,6 +22,7 @@ export const getComplaints = async (req, res) => {
     }
 };
 
+//post complaints
 export const postComplaint = async (req, res) => {
     try {
         const { fullName, email, hostel, room, description, picturePath } =
@@ -40,6 +44,7 @@ export const postComplaint = async (req, res) => {
     }
 };
 
+// update upvote complaints
 export const upvoteComplaint = async (req, res) => {
     try {
         const { upvote } = req.body;
@@ -57,6 +62,7 @@ export const upvoteComplaint = async (req, res) => {
     }
 };
 
+//update downvote complaints
 export const downvoteComplaint = async (req, res) => {
     try {
         const { downvote } = req.body;
@@ -69,6 +75,16 @@ export const downvoteComplaint = async (req, res) => {
         );
 
         res.status(200).json(updatedComplaint);
+    } catch (err) {
+        res.status(404).json({ message: err.message });
+    }
+};
+
+//get mess menu
+export const getMessMenu = async (req, res) => {
+    try {
+        const messMenu = await Menu.find();
+        res.status(200).json(messMenu);
     } catch (err) {
         res.status(404).json({ message: err.message });
     }

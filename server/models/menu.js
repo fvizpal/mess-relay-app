@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const menuSchema = mongoose.Schema({
-    Day: {
+const MenuSchema = mongoose.Schema({
+    day: {
         type: String,
         required: true,
     },
-    Breakfast: String,
-    Lunch: String,
-    Snack: String,
-    Dinner: String,
+    breakfast: String,
+    lunch: String,
+    snack: String,
+    dinner: String,
 });
 
-const Menu = mongoose.model("Menu", menuSchema);
+const Menu = mongoose.model("Menu", MenuSchema);
 export default Menu;
