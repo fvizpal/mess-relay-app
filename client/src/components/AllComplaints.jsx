@@ -6,7 +6,6 @@ import { Typography } from "@mui/material";
 
 const AllComplaints = () => {
     const dispatch = useDispatch();
-    const complaints = useSelector((state) => state.complaints);
 
     const { role } = useSelector((state) => state.user);
     const isAdmin = role === "admin";
@@ -25,6 +24,7 @@ const AllComplaints = () => {
     useEffect(() => {
         getComplaints();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    const complaints = useSelector((state) => state.complaints);
 
     return (
         <>

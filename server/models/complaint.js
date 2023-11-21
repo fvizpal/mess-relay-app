@@ -25,7 +25,10 @@ const ComplaintSchema = mongoose.Schema(
             type: Number,
             default: 0,
         },
-        resolved: Boolean,
+        resolved: {
+            type: Boolean,
+            default: false,
+        },
     },
     { timestaps: true }
 );

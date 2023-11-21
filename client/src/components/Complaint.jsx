@@ -24,7 +24,7 @@ const Complaint = ({
 }) => {
     const [isUpvoted, setIsUpvoted] = useState(false);
     const [isDownvoted, setIsDownvoted] = useState(false);
-    const [isResolved, setIsResolved] = useState(false);
+    // const [isResolved, setIsResolved] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -58,8 +58,17 @@ const Complaint = ({
         setIsDownvoted(!isDownvoted);
     };
 
-    const patchResolveClick = () => {
-        setIsResolved(!isResolved);
+    const patchResolveClick = async () => {
+        const response = await fetch(
+            `http://localhost:3001/admin/complaint/resolved/${complaintId}`,
+            {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ resolved: true }),
+            }
+        );
+        const updatedComplaint = await response.json();
+        dispatch(setUpdatedComplaint({ complaint: updatedComplaint }));
     };
 
     return (
@@ -87,26 +96,48 @@ const Complaint = ({
                 // justifyContent={"space-between"}
                 alignItems={"center"}
             >
-                <IconButton onClick={patchUpvoteClick} disabled={isUpvoted}>
-                    <Box ml={"1rem"} mr={"1rem"}>
-                        {upvotes}
-                    </Box>
-                    {isUpvoted ? <ThumbUp /> : <ThumbUpOffAltOutlined />}
-                    <Typography>Upvote</Typography>
-                </IconButton>
+                {!isAdmin ? (
+                    <>
+                        {!resolved ? (
+                            <>
+                                <IconButton
+                                    onClick={patchUpvoteClick}
+                                    disabled={isUpvoted}
+                                >
+                                    <Box ml={"1rem"} mr={"1rem"}>
+                                        {upvotes}
+                                    </Box>
+                                    {isUpvoted ? (
+                                        <ThumbUp />
+                                    ) : (
+                                        <ThumbUpOffAltOutlined />
+                                    )}
+                                    <Typography>Upvote</Typography>
+                                </IconButton>
 
-                <IconButton onClick={patchDownvoteClick} disabled={isDownvoted}>
-                    <Box ml={"1rem"} mr={"1rem"}>
-                        {downvotes}
-                    </Box>
-                    {isDownvoted ? <ThumbDown /> : <ThumbDownOffAltOutlined />}
-                    <Typography>Downvote</Typography>
-                </IconButton>
-
-                <Box>
-                    {isAdmin && (
+                                <IconButton
+                                    onClick={patchDownvoteClick}
+                                    disabled={isDownvoted}
+                                >
+                                    <Box ml={"1rem"} mr={"1rem"}>
+                                        {downvotes}
+                                    </Box>
+                                    {isDownvoted ? (
+                                        <ThumbDown />
+                                    ) : (
+                                        <ThumbDownOffAltOutlined />
+                                    )}
+                                    <Typography>Downvote</Typography>
+                                </IconButton>
+                            </>
+                        ) : (
+                            <TaskAltOutlined />
+                        )}
+                    </>
+                ) : (
+                    <Box>
                         <>
-                            {isResolved ? (
+                            {resolved ? (
                                 <IconButton onClick={patchResolveClick}>
                                     <TaskAltOutlined />
                                 </IconButton>
@@ -116,8 +147,8 @@ const Complaint = ({
                                 </Button>
                             )}
                         </>
-                    )}
-                </Box>
+                    </Box>
+                )}
             </Box>
         </Box>
     );

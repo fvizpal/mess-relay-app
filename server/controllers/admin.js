@@ -1,5 +1,6 @@
 import Menu from "../models/Menu.js";
 import Notifs from "../models/Notifs.js";
+import Complaint from "../models/Complaint.js";
 
 //create New notification
 export const postNotifs = async (req, res) => {
@@ -31,12 +32,30 @@ export const deleteNotifs = async (req, res) => {
     }
 };
 
+// patch resolved complaint status
+export const resolveComplaint = async (req, res) => {
+    try {
+        const { resolved } = req.body;
+        const { id } = req.params;
+
+        const updatedComplaint = await Complaint.findByIdAndUpdate(
+            id,
+            { resolved: resolved },
+            { new: true }
+        );
+
+        res.status(200).json(updatedComplaint);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
 // Update mess menu
 export const updateMenu = async (req, res) => {
     try {
         const { id } = req.params;
         const { type, field } = req.body;
-        const updatedMenu = {};
+        let updatedMenu = {};
         if (type === "breakfast") {
             updatedMenu = await Menu.findByIdAndUpdate(
                 id,

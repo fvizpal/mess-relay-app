@@ -152,7 +152,7 @@ const Form = () => {
                                 "&:hover": { color: "secondary" },
                             }}
                         >
-                            SUBMIT
+                            ADD
                         </Button>
                     </Box>
                 </form>

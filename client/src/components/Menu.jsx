@@ -156,7 +156,8 @@ const Menu = ({ menuId, day, breakfast, lunch, snack, dinner, isEditable }) => {
                         }),
                     }}
                 >
-                    {isEditBreakfast ? (
+                    <>{breakfastA}</>
+                    {/* {isEditBreakfast ? (
                         <>
                             <TextField
                                 value={editedBreakValue}
@@ -169,8 +170,7 @@ const Menu = ({ menuId, day, breakfast, lunch, snack, dinner, isEditable }) => {
                             </IconButton>
                         </>
                     ) : (
-                        <>{breakfastA}</>
-                    )}
+                    )} */}
                 </Box>
                 <Divider textAlign="left">Lunch</Divider>
                 <Box
@@ -186,7 +186,8 @@ const Menu = ({ menuId, day, breakfast, lunch, snack, dinner, isEditable }) => {
                         }),
                     }}
                 >
-                    {isEditLunch ? (
+                    <>{lunchA}</>
+                    {/* {isEditLunch ? (
                         <>
                             <TextField
                                 value={editedLunchValue}
@@ -199,8 +200,7 @@ const Menu = ({ menuId, day, breakfast, lunch, snack, dinner, isEditable }) => {
                             </IconButton>
                         </>
                     ) : (
-                        <>{lunchA}</>
-                    )}
+                    )} */}
                 </Box>
                 <Divider textAlign="left">Snack</Divider>
                 <Box
@@ -216,7 +216,8 @@ const Menu = ({ menuId, day, breakfast, lunch, snack, dinner, isEditable }) => {
                         }),
                     }}
                 >
-                    {isEditSnack ? (
+                    <>{snackA}</>
+                    {/* {isEditSnack ? (
                         <>
                             <TextField
                                 value={editedSnackValue}
@@ -229,8 +230,7 @@ const Menu = ({ menuId, day, breakfast, lunch, snack, dinner, isEditable }) => {
                             </IconButton>
                         </>
                     ) : (
-                        <>{snackA}</>
-                    )}
+                    )} */}
                 </Box>
                 <Divider textAlign="left">Dinner</Divider>
                 <Box
@@ -246,7 +246,8 @@ const Menu = ({ menuId, day, breakfast, lunch, snack, dinner, isEditable }) => {
                         }),
                     }}
                 >
-                    {isEditDinner ? (
+                    <>{dinnerA}</>
+                    {/* {isEditDinner ? (
                         <>
                             <TextField
                                 value={editedDinnerValue}
@@ -259,8 +260,7 @@ const Menu = ({ menuId, day, breakfast, lunch, snack, dinner, isEditable }) => {
                             </IconButton>
                         </>
                     ) : (
-                        <>{dinnerA}</>
-                    )}
+                    )} */}
                 </Box>
             </Box>
         </Box>
