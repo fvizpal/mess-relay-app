@@ -1,9 +1,11 @@
 import { Box, Button, InputBase } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setNotifs } from "state";
+import { addNotif } from "state";
+// import { useNavigate } from "react-router-dom";
 
 const AddNotification = () => {
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
     const [notif, setNotif] = useState("");
 
@@ -16,7 +18,8 @@ const AddNotification = () => {
             body: formData,
         });
         const notifs = await response.json();
-        dispatch(setNotifs({ notifs: notifs }));
+        console.log(notifs);
+        dispatch(addNotif(notifs));
         setNotif("");
     };
 

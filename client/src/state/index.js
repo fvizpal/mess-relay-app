@@ -7,6 +7,7 @@ const initialState = {
     notifs: [],
     complaints: [],
     messMenu: [],
+    expenses: [],
 };
 
 export const authSlice = createSlice({
@@ -27,8 +28,20 @@ export const authSlice = createSlice({
         setNotifs: (state, action) => {
             state.notifs = action.payload.notifs;
         },
+        addNotif: (state, action) => {
+            state.notifs.push(action.payload);
+        },
+        deleteNotif: (state, action) => {
+            const updatedNotif = state.notifs.filter(
+                (notif) => notif._id !== action.payload._id
+            );
+            state.notifs = updatedNotif;
+        },
         setComplaints: (state, action) => {
             state.complaints = action.payload.complaints;
+        },
+        addComplaint: (state, action) => {
+            state.complaints.push(action.payload);
         },
         setUpdatedComplaint: (state, action) => {
             const updatedComplaints = state.complaints.map((complaint) => {
@@ -49,6 +62,12 @@ export const authSlice = createSlice({
             });
             state.messMenu = updatedMessMenu;
         },
+        setExpenses: (state, action) => {
+            state.expenses = action.payload.expenses;
+        },
+        addExpense: (state, action) => {
+            state.expenses.push(action.payload);
+        },
     },
 });
 
@@ -57,9 +76,14 @@ export const {
     setLogin,
     setLogout,
     setNotifs,
+    addNotif,
+    deleteNotif,
     setComplaints,
+    addComplaint,
     setUpdatedComplaint,
     setMessMenu,
     setUpdateMessMenu,
+    setExpenses,
+    addExpense,
 } = authSlice.actions;
 export default authSlice.reducer;

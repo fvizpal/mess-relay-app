@@ -6,6 +6,8 @@ import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ComplaintPage from "scenes/complaintPage";
 import MessMenu from "scenes/messMenu";
+import Expenses from "scenes/expensesPage";
+
 import { useMemo } from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { themeSettings } from "./theme";
@@ -46,6 +48,12 @@ function App() {
                                 element={
                                     // <MessMenu />
                                     isAuth ? <MessMenu /> : <Navigate to="/" />
+                                }
+                            />
+                            <Route
+                                path="/expenses"
+                                element={
+                                    isAuth ? <Expenses /> : <Navigate to="/" />
                                 }
                             />
                         </Route>

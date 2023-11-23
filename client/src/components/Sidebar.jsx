@@ -18,6 +18,7 @@ import {
     CalendarMonthOutlined,
     SchoolOutlined,
     FestivalOutlined,
+    ShoppingCartOutlined,
 } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
@@ -107,6 +108,20 @@ const Sidebar = ({
                                             />
                                         </ListItemButton>
                                     </ListItem>
+                                    <ListItem>
+                                        <ListItemButton
+                                            onClick={() => {
+                                                navigate(`/expenses`);
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <ShoppingCartOutlined />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={"Daily Expenses"}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
                                 </List>
                             ) : (
                                 <List>
@@ -156,6 +171,8 @@ const Sidebar = ({
                             )}
                         </Box>
                     </Box>
+
+                    {/* The common tabs */}
                     <Box position={"absolute"} width={"100%"} bottom={"2rem"}>
                         <Divider />
                         <Box marginTop={"2rem"}>

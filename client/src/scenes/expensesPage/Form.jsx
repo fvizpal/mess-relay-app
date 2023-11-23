@@ -1,18 +1,15 @@
 import { Formik } from "formik";
-import { useState } from "react";
 import {
     Box,
     Button,
     TextField,
     useMediaQuery,
-    // useTheme,
-    Alert,
+    // useTheme;
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import * as yup from "yup";
-import { setComplaints } from "state";
+import { addExpense } from "state";
 
 const complaintSchema = yup.object().shape({
     item: yup.string().required("Required"),
@@ -28,12 +25,6 @@ const initialComplaintValues = {
 
 const Form = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const { firstName, lastName, email, hostel } = useSelector(
-        (state) => state.user
-    );
-    const fullName = firstName + " " + lastName;
 
     const isDesktop = useMediaQuery("(min-width:600px)");
 
@@ -42,32 +33,23 @@ const Form = () => {
         for (let value in values) {
             formData.append(value, values[value]);
         }
-        formData.append("picturePath", values.picture.name);
-        formData.append("fullName", fullName);
-        formData.append("email", email);
-        formData.append("hostel", hostel);
         // for (const pair of formData.entries()) {
         //     console.log(pair[0] + ", " + pair[1]);
         // }
 
         const savedUserResponse = await fetch(
-            "http://localhost:3001/student/complaint",
+            "http://localhost:3001/admin/expenses/add",
             {
                 method: "POST",
                 body: formData,
             }
         );
         // console.log(savedUserResponse);
-        const savedComplaint = await savedUserResponse.json();
+        const savedExpense = await savedUserResponse.json();
 
         onSubmitProps.resetForm();
-        if (savedComplaint) {
-            dispatch(
-                setComplaints({
-                    complaints: savedComplaint.complaint,
-                })
-            );
-            navigate("/complaint");
+        if (savedExpense) {
+            dispatch(addExpense(savedExpense));
         }
     };
 
@@ -122,8 +104,6 @@ const Form = () => {
                                 Boolean(touched.rate) && Boolean(errors.rate)
                             }
                             helperText={touched.rate && errors.rate}
-                            multiline
-                            maxRows={4}
                         />
                         <TextField
                             label="Number of Units"
@@ -135,8 +115,6 @@ const Form = () => {
                                 Boolean(touched.units) && Boolean(errors.units)
                             }
                             helperText={touched.units && errors.units}
-                            multiline
-                            maxRows={4}
                         />
                     </Box>
 

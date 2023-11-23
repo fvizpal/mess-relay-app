@@ -1,8 +1,12 @@
 import React from "react";
 import { Box, IconButton } from "@mui/material";
 import { DeleteOutlineOutlined } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { deleteNotif } from "state";
 
 const Notif = ({ notifId, description, isAdmin }) => {
+    const dispatch = useDispatch();
+
     const handleDelete = async () => {
         const response = await fetch(
             `http://localhost:3001/admin/notifs/${notifId}`,
@@ -14,11 +18,7 @@ const Notif = ({ notifId, description, isAdmin }) => {
             }
         );
         const deleteResponse = await response.json();
-        if (deleteResponse) {
-            console.log("notif deleted");
-        } else {
-            console.log("deletion failed");
-        }
+        dispatch(deleteNotif(deleteResponse));
     };
 
     return (

@@ -1,12 +1,12 @@
 import Menu from "../models/Menu.js";
 import Notifs from "../models/Notifs.js";
 import Complaint from "../models/Complaint.js";
+import Expenses from "../models/Expenses.js";
 
 //create New notification
 export const postNotifs = async (req, res) => {
     try {
         const { description } = req.body;
-        console.log(description);
         const newNotice = new Notifs({
             description,
         });
@@ -22,11 +22,10 @@ export const postNotifs = async (req, res) => {
 export const deleteNotifs = async (req, res) => {
     try {
         const { id } = req.params;
-        const notifToDelete = await Notifs.findById(id);
 
-        await notifToDelete.remove();
+        const result = await Notifs.findOneAndDelete({ _id: id });
 
-        res.status(200).json({ message: "Notif deleted successfully" });
+        res.status(200).json(result);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -88,5 +87,23 @@ export const updateMenu = async (req, res) => {
         res.status(200).json(updateMenu);
     } catch (err) {
         res.status(404).json({ message: err.message });
+    }
+};
+
+//Add daily expenses
+export const postExpenses = async (req, res) => {
+    try {
+        const { item, rate, units } = req.body;
+
+        const newAddedExpense = new Expenses({
+            item,
+            rate,
+            units,
+        });
+
+        const resp = await newAddedExpense.save();
+        res.status(200).json(resp);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };

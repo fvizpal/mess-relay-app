@@ -27,7 +27,6 @@ const HomePage = () => {
                 padding={"1rem 6%"}
                 display={isDesktop ? "flex" : "block"}
                 justifyContent={"space-between"}
-                gap={"0.5rem"}
             >
                 <Box
                     border={"1px solid "}

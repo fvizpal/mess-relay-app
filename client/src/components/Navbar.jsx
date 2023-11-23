@@ -19,8 +19,10 @@ import {
 
 import { setLogout, setMode } from "state";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+    const navigate = useNavigate();
     const theme = useTheme();
     const dispatch = useDispatch();
     const { firstName, lastName } = useSelector((state) => state.user);
@@ -33,6 +35,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
 
     const handleLogout = () => {
         dispatch(setLogout());
+        navigate("/");
     };
 
     return (

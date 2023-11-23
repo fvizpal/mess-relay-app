@@ -10,11 +10,10 @@ import {
     Alert,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import * as yup from "yup";
 import Dropzone from "react-dropzone";
-import { setComplaints } from "state";
+import { addComplaint } from "state";
 
 const complaintSchema = yup.object().shape({
     description: yup.string().required("Required"),
@@ -30,7 +29,6 @@ const initialComplaintValues = {
 
 const Form = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const { firstName, lastName, email, hostel } = useSelector(
         (state) => state.user
@@ -66,12 +64,7 @@ const Form = () => {
 
         onSubmitProps.resetForm();
         if (savedComplaint) {
-            dispatch(
-                setComplaints({
-                    complaints: savedComplaint.complaint,
-                })
-            );
-            navigate("/complaint");
+            dispatch(addComplaint(savedComplaint));
             setHasComplained(true);
         }
     };
