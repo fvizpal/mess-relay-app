@@ -19,6 +19,7 @@ import {
     SchoolOutlined,
     FestivalOutlined,
     ShoppingCartOutlined,
+    AnalyticsOutlined,
 } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
@@ -119,6 +120,20 @@ const Sidebar = ({
                                             </ListItemIcon>
                                             <ListItemText
                                                 primary={"Daily Expenses"}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemButton
+                                            onClick={() => {
+                                                navigate(`/analysis`);
+                                            }}
+                                        >
+                                            <ListItemIcon>
+                                                <AnalyticsOutlined />
+                                            </ListItemIcon>
+                                            <ListItemText
+                                                primary={"Analysis"}
                                             />
                                         </ListItemButton>
                                     </ListItem>

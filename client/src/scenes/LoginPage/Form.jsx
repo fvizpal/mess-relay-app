@@ -248,6 +248,19 @@ const Form = () => {
                             {isLogin ? "LOGIN" : "REGISTER"}
                         </Button>
                         <Typography
+                            mb={"1rem"}
+                            onClick={() => navigate("/forgot")}
+                            sx={{
+                                textDecoration: "underline",
+                                "&:hover": {
+                                    cursor: "pointer",
+                                    color: "primary",
+                                },
+                            }}
+                        >
+                            {isLogin && <>Forgot password</>}
+                        </Typography>
+                        <Typography
                             onClick={() => {
                                 setPageType(isLogin ? "register" : "login");
                                 resetForm();

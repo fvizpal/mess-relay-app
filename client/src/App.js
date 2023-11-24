@@ -7,10 +7,13 @@ import LoginPage from "scenes/loginPage";
 import ComplaintPage from "scenes/complaintPage";
 import MessMenu from "scenes/messMenu";
 import Expenses from "scenes/expensesPage";
+import ForgotCred from "components/ForgotCred";
+import ResetPassword from "components/ResetPassword";
 
 import { useMemo } from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { themeSettings } from "./theme";
+import Analysis from "scenes/analysis";
 
 function App() {
     const mode = useSelector((state) => state.mode);
@@ -24,29 +27,31 @@ function App() {
                     <CssBaseline />
                     <Routes>
                         <Route path="/" element={<LoginPage />} />
+                        <Route path="/forgot" element={<ForgotCred />} />
+                        <Route
+                            path="resetpassword"
+                            element={<ResetPassword />}
+                        />
                         <Route element={<Layout />}>
                             <Route
                                 path="/home"
                                 element={
-                                    // <HomePage />
                                     isAuth ? <HomePage /> : <Navigate to="/" />
                                 }
                             />
                             <Route
                                 path="/complaint"
                                 element={
-                                    // <ComplaintPage />
                                     isAuth ? (
                                         <ComplaintPage />
                                     ) : (
-                                        <Navigate to="/" />
+                                        <Navigate to={"/"} />
                                     )
                                 }
                             />
                             <Route
                                 path="/menu"
                                 element={
-                                    // <MessMenu />
                                     isAuth ? <MessMenu /> : <Navigate to="/" />
                                 }
                             />
@@ -54,6 +59,12 @@ function App() {
                                 path="/expenses"
                                 element={
                                     isAuth ? <Expenses /> : <Navigate to="/" />
+                                }
+                            />
+                            <Route
+                                path="/analysis"
+                                element={
+                                    isAuth ? <Analysis /> : <Navigate to="/" />
                                 }
                             />
                         </Route>

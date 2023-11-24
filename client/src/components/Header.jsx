@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 const Header = ({ title, subtitle }) => {
     return (
-        <Box>
+        <Box ml={"1rem"}>
             <Typography
                 variant="h4"
                 fontWeight={"bold"}

@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import {
-    Box,
     Button,
+    Paper,
     TextField,
     useMediaQuery,
     // useTheme;
@@ -74,14 +74,30 @@ const Form = () => {
                 resetForm,
             }) => (
                 <form onSubmit={handleSubmit}>
-                    <Box
-                        display="flex"
-                        gap="30px"
+                    <Paper
                         sx={{
-                            "& > div": {
-                                gridColumn: isDesktop ? undefined : "span 4",
-                            },
+                            // width: "inherit",
+                            position: "fixed",
+                            bottom: 10,
+                            // left: 3,
+                            right: 0,
+                            padding: "16px",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
                         }}
+                        elevation={3}
+                        // border={"1px solid"}
+                        // borderRadius={"1rem"}
+                        // display="flex"
+                        // gap="20px"
+                        // m={"0rem 6rem 0rem 6rem"}
+
+                        // sx={{
+                        //     "& > div": {
+                        //         gridColumn: isDesktop ? undefined : "span 4",
+                        //     },
+                        // }}
                     >
                         <TextField
                             label="Name of the Item"
@@ -116,23 +132,21 @@ const Form = () => {
                             }
                             helperText={touched.units && errors.units}
                         />
-                    </Box>
-
-                    <Box>
                         <Button
                             fullwidth="true"
                             type="submit"
                             sx={{
-                                m: "2rem 0",
-                                p: "1rem",
                                 // backgroundColor={primary}
                                 color: "primary",
                                 "&:hover": { color: "secondary" },
                             }}
+                            disabled={
+                                !(values.item && values.rate && values.units)
+                            }
                         >
                             ADD
                         </Button>
-                    </Box>
+                    </Paper>
                 </form>
             )}
         </Formik>
