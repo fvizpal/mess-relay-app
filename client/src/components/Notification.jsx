@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setNotifs } from "state";
 import Notif from "./Notif";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 const Notification = () => {
     const dispatch = useDispatch();
+    const theme = useTheme();
     const notifs = useSelector((state) => state.notifs);
     const { role } = useSelector((state) => state.user);
     const isAdmin = role === "admin";
@@ -23,7 +24,11 @@ const Notification = () => {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <Box border={"1px solid"} borderRadius={"1rem"}>
+        <Box
+            border={"1px solid"}
+            borderRadius={"1rem"}
+            sx={{ backgroundColor: theme.palette.background.secondary }}
+        >
             <Typography
                 variant="h6"
                 margin={"1rem 1rem 1rem 1rem"}

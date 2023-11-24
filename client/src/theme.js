@@ -111,8 +111,8 @@ export const themeSettings = (mode) => {
                       },
                       background: {
                           default: colorTokens.grey[900],
-                          main: colorTokens.grey[700],
-                          secondary: colorTokens.grey[600],
+                          main: colorTokens.grey[800],
+                          secondary: colorTokens.grey[700],
                           alt: colorTokens.grey[800],
                       },
                   }

@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, useTheme } from "@mui/material";
 import { DeleteOutlineOutlined } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { deleteNotif } from "state";
 
 const Notif = ({ notifId, description, isAdmin }) => {
+    const theme = useTheme();
     const dispatch = useDispatch();
 
     const handleDelete = async () => {
@@ -23,12 +24,15 @@ const Notif = ({ notifId, description, isAdmin }) => {
 
     return (
         <Box
-            borderRadius={"0.5rem"}
+            borderRadius={"0.2rem"}
             m={"1rem 0"}
             ml={"1rem"}
             // border={"1px solid"}
             display={"flex"}
             width="90%"
+            sx={{
+                backgroundColor: theme.palette.background.main,
+            }}
         >
             <Box>{description}</Box>
             {isAdmin && (
