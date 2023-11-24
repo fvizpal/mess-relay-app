@@ -27,7 +27,20 @@ const Notification = () => {
         <Box
             border={"1px solid"}
             borderRadius={"1rem"}
-            sx={{ backgroundColor: theme.palette.background.secondary }}
+            overflow={"scroll"}
+            sx={{
+                "&::-webkit-scrollbar": {
+                    width: 1,
+                },
+                "&::-webkit-scrollbar-track": {
+                    backgroundColor: "primary",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                    borderRadius: 10,
+                    backgroundColor: "primary",
+                },
+                backgroundColor: theme.palette.background.secondary,
+            }}
         >
             <Typography
                 variant="h6"

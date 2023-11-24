@@ -31,10 +31,25 @@ const HomePage = () => {
             >
                 <Box
                     borderRadius={"1rem"}
+                    height={"74vh"}
+                    // width={"80rem"}
                     padding={"1rem 1rem 1rem 1rem"}
                     flexBasis={isDesktop ? "60%" : undefined}
                     mt={isDesktop ? undefined : "2rem"}
-                    sx={{ backgroundColor: theme.palette.background.secondary }}
+                    overflow={"scroll"}
+                    sx={{
+                        "&::-webkit-scrollbar": {
+                            width: 1,
+                        },
+                        "&::-webkit-scrollbar-track": {
+                            backgroundColor: "primary",
+                        },
+                        "&::-webkit-scrollbar-thumb": {
+                            borderRadius: 10,
+                            backgroundColor: "primary",
+                        },
+                        backgroundColor: theme.palette.background.secondary,
+                    }}
                 >
                     <AllComplaints />
                 </Box>
