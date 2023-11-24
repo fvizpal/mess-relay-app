@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { setExpenses } from "state";
 import { useSelector } from "react-redux";
 import { PieChart } from "@mui/x-charts";
 import { Box } from "@mui/material";
@@ -12,7 +11,7 @@ const chartSettings = {
             label: "Total Price (INR)",
         },
     ],
-    width: 500,
+    width: 1000,
     height: 500,
 };
 
@@ -47,6 +46,7 @@ const Analysis = () => {
             <Header title="Analysis of Expenses" />
             <Box
                 display={"flex"}
+                flexDirection={"column"}
                 justifyContent={"space-between"}
                 alignItems={"center"}
             >
@@ -59,8 +59,9 @@ const Analysis = () => {
                 />
                 <PieChart
                     series={[{ data: pieData }]}
-                    width={400}
-                    height={200}
+                    width={1000}
+                    height={500}
+                    sx={{ mt: "3rem" }}
                 />
             </Box>
         </>

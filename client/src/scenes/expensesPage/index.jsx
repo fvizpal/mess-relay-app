@@ -39,7 +39,6 @@ const columns = [
 
 const Expenses = () => {
     const dispatch = useDispatch();
-    const expenses = useSelector((state) => state.expenses);
 
     const getExpenses = async () => {
         const response = await fetch("http://localhost:3001/admin/expenses", {
@@ -54,6 +53,8 @@ const Expenses = () => {
     useEffect(() => {
         getExpenses();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const expenses = useSelector((state) => state.expenses);
 
     const formattedExpenses = expenses.map((obj, id) => {
         return { ...obj, id: id, totalPrice: obj.rate * obj.units };
@@ -74,7 +75,7 @@ const Expenses = () => {
                     initialState={{
                         pagination: {
                             paginationModel: {
-                                pageSize: 5,
+                                pageSize: 8,
                             },
                         },
                     }}

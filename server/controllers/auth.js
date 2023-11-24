@@ -67,29 +67,22 @@ export const forgotPassword = async (req, res) => {
     }
 
     // token creation with crypto( a built in package in express )
-    let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
-    console.log("Copy the Token !! and Use as Params :");
-    console.log(resetToken);
-
-    // Hash the token before saving to Db
-    const hashedToken = crypto
-        .createHash("sha256")
-        .update(resetToken)
-        .digest("hex");
+    const newToken = jwt.sign({ email }, process.env.JWT_SECRET, {
+        expiresIn: "1hr",
+    });
 
     // Save token to Db
     await new Token({
         userId: user._id,
-        token: hashedToken,
+        token: newToken,
         createdAt: Date.now(),
-        expiresAt: Date.now() + 5 * (60 * 1000), // token expires in 5 minutes
+        expiresAt: Date.now() + 60 * (60 * 1000), // token expires in 5 minutes
     }).save();
 
     // Construct Reset Url
     // reset url = frontened Url + token
     // frontend Url in .env file
-    const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
-    console.log(process.env.FRONTEND_URL);
+    const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${newToken}`;
 
     // ResetEmail message content
     const message = `
@@ -123,7 +116,7 @@ export const resetPassword = async (req, res) => {
     // and the password from the body
 
     const { newPassword, confirmPassword } = req.body;
-    const { resetToken } = req.params;
+    const { newToken } = req.params;
 
     if (confirmPassword !== newPassword) {
         res.send("ConfirmPassword did not match !!!");
@@ -131,7 +124,7 @@ export const resetPassword = async (req, res) => {
         // hashed the obtained
         const hashedToken = crypto
             .createHash("sha256")
-            .update(resetToken)
+            .update(newToken)
             .digest("hex");
 
         // find the user data using the token

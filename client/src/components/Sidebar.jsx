@@ -10,6 +10,7 @@ import {
     ListItemIcon,
     ListItemText,
     Typography,
+    useTheme,
 } from "@mui/material";
 import {
     HomeOutlined,
@@ -32,6 +33,7 @@ const Sidebar = ({
     setIsSidebarOpen,
 }) => {
     const navigate = useNavigate();
+    const theme = useTheme();
 
     return (
         <Box component="nav">
@@ -44,10 +46,10 @@ const Sidebar = ({
                     sx={{
                         width: drawerWidth,
                         "& .MuiDrawer-paper": {
-                            // color: "primary",
-                            // backgroundColor: "primary",
+                            color: theme.palette.primary.dark,
+                            backgroundColor: theme.palette.background.alt,
                             boxSixing: "border-box",
-                            borderWidth: isDesktop ? "0.5px" : "2px",
+                            borderWidth: isDesktop ? "0px" : "2px",
                             width: drawerWidth,
                         },
                     }}

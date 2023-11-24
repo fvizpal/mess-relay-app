@@ -107,3 +107,14 @@ export const postExpenses = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+// Get expenses data
+export const getExpenses = async (req, res) => {
+    try {
+        const expenses = await Expenses.find();
+
+        res.status(201).json(expenses);
+    } catch (err) {
+        res.status(404).json({ message: err.message });
+    }
+};

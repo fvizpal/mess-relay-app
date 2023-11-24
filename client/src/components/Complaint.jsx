@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import {
     ThumbUpOffAltOutlined,
@@ -22,6 +22,7 @@ const Complaint = ({
     resolved,
     isAdmin,
 }) => {
+    const theme = useTheme();
     const [isUpvoted, setIsUpvoted] = useState(false);
     const [isDownvoted, setIsDownvoted] = useState(false);
     // const [isResolved, setIsResolved] = useState(false);
@@ -75,8 +76,10 @@ const Complaint = ({
         <Box
             borderRadius={"0.75rem"}
             padding="1.5rem 1.5rem 0.75rem 1.5rem"
-            border={"1px solid"}
             margin={"1rem 1rem"}
+            sx={{
+                backgroundColor: theme.palette.background.main,
+            }}
         >
             <Typography>{description}</Typography>
             {picturePath && (
@@ -142,7 +145,13 @@ const Complaint = ({
                                     <TaskAltOutlined />
                                 </IconButton>
                             ) : (
-                                <Button onClick={patchResolveClick}>
+                                <Button
+                                    onClick={patchResolveClick}
+                                    sx={{
+                                        backgroundColor:
+                                            theme.palette.primary.light,
+                                    }}
+                                >
                                     MARK RESOLVED
                                 </Button>
                             )}

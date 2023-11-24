@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
 import Header from "components/Header";
 import AddNotification from "components/AddNotification";
@@ -8,6 +8,7 @@ import AllComplaints from "components/AllComplaints";
 import MealRating from "components/MealRating";
 
 const HomePage = () => {
+    const theme = useTheme();
     const { firstName, role } = useSelector((state) => state.user);
     const isAdmin = role === "admin";
     const subtitle = "Welcome " + firstName + "!";
@@ -29,11 +30,11 @@ const HomePage = () => {
                 justifyContent={"space-between"}
             >
                 <Box
-                    border={"1px solid "}
                     borderRadius={"1rem"}
                     padding={"1rem 1rem 1rem 1rem"}
                     flexBasis={isDesktop ? "60%" : undefined}
                     mt={isDesktop ? undefined : "2rem"}
+                    sx={{ backgroundColor: theme.palette.background.secondary }}
                 >
                     <AllComplaints />
                 </Box>
