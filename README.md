@@ -6,7 +6,7 @@
   <a href="https://www.youtube.com/watch?v=p3m9kLvWloo&ab_channel=RohanSaini">YouTube video link</a>
 
 ## Documentation Link:
-  <a href:"https://drive.google.com/file/d/1pGdTbyR7uNbu1ewqKZuHoKM0cT5OAuD2/view?usp=sharing"> Documentation </a>
+  <a href="https://drive.google.com/file/d/1pGdTbyR7uNbu1ewqKZuHoKM0cT5OAuD2/view?usp=sharing"> Documentation </a>
   
 ## Getting started:
   To get started with the project, you will need to follow these steps:
