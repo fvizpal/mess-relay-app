@@ -1,5 +1,5 @@
 <h1 align="center">Mess Relay app</h1>
-<p align="center">
+<p align="left">
 The Mess Relay App is an innovative mess management system designed to streamline and enhance the daily operations of student mess facilities. It provides a centralized platform for managing notifications, complaints, expenses, and mess menus. Built with a user-friendly interface and secure backend, the app ensures seamless communication between students and administrators, making mess operations efficient and transparent.
 </p>
 
