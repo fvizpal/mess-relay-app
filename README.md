@@ -2,6 +2,13 @@
 <p align="center">
 </p>
 
+## Live App
+link : https://messrelay.netlify.app/
+
+## Testing and Dummy User
+Email : user1@gmail.com
+Password : user1
+
 ## Demo Video Link:
   <a href="https://www.youtube.com/watch?v=p3m9kLvWloo&ab_channel=RohanSaini">YouTube video link</a>
 
