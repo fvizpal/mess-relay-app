@@ -1,9 +1,21 @@
-<h1 align="center">Mess Relay app</h1>
-<p align="center">
+# Mess-Relay app
+<p align="left">
+The Mess Relay App is an innovative mess management system designed to streamline and enhance the daily operations of student mess facilities. It provides a centralized platform for managing notifications, complaints, expenses, and mess menus. Built with a user-friendly interface and secure backend, the app ensures seamless communication between students and administrators, making mess operations efficient and transparent.
 </p>
+
+## Live App
+link : https://messrelay.netlify.app/
+
+## Testing and Dummy User
+Email : user1@gmail.com
+
+Password : user1
 
 ## Demo Video Link:
   <a href="https://www.youtube.com/watch?v=p3m9kLvWloo&ab_channel=RohanSaini">YouTube video link</a>
+
+## Documentation Link:
+  <a href="https://drive.google.com/file/d/1pGdTbyR7uNbu1ewqKZuHoKM0cT5OAuD2/view?usp=sharing"> Documentation </a>
   
 ## Getting started:
   To get started with the project, you will need to follow these steps:
