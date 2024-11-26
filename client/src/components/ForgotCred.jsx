@@ -5,13 +5,15 @@ import Header from "./Header";
 
 const ForgotCred = () => {
     const navigate = useNavigate();
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
 
     const [email, setEmail] = useState("");
     const [isSentForgot, setIsSentForgot] = useState(false);
 
     const handleForgot = async () => {
-        const response = await fetch("http://localhost:3001/auth/forgot", {
+        const response = await fetch(`${BaseUrl}/auth/forgot`, { // Using BaseUrl dynamically
             method: "POST",
+            headers: { "Content-Type": "application/json" }, // Added headers for JSON
             body: JSON.stringify({ email: email }),
         });
         const sentResponse = await response.json();

@@ -6,7 +6,6 @@ import {
     TextField,
     useMediaQuery,
     Typography,
-    // useTheme,
     MenuItem,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -49,6 +48,7 @@ const Form = () => {
     const navigate = useNavigate();
 
     const isDesktop = useMediaQuery("(min-width:600px)");
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
 
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
@@ -58,20 +58,15 @@ const Form = () => {
         for (let value in values) {
             formData.append(value, values[value]);
         }
-        // for (const pair of formData.entries()) {
-        //     console.log(pair[0] + ", " + pair[1]);
-        // }
 
         const savedUserResponse = await fetch(
-            "http://localhost:3001/auth/register",
+            `${BaseUrl}/auth/register`,
             {
                 method: "POST",
                 body: formData,
             }
         );
-        // console.log(savedUserResponse);
         const savedUser = await savedUserResponse.json();
-        // console.log(savedUser);
         onSubmitProps.resetForm();
 
         if (savedUser) {
@@ -81,7 +76,7 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "http://localhost:3001/auth/login",
+            `${BaseUrl}/auth/login`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -240,7 +235,6 @@ const Form = () => {
                             sx={{
                                 m: "2rem 0",
                                 p: "1rem",
-                                // backgroundColor={primary}
                                 color: "primary",
                                 "&:hover": { color: "secondary" },
                             }}

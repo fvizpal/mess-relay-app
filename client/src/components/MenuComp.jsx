@@ -1,6 +1,5 @@
 import { Box, IconButton } from "@mui/material";
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessMenu } from "state";
 import Menu from "./Menu";
@@ -8,7 +7,6 @@ import {
     ModeEditOutlineOutlined,
     DoneOutlineOutlined,
 } from "@mui/icons-material";
-import { useState } from "react";
 
 const MenuComp = () => {
     const dispatch = useDispatch();
@@ -16,10 +14,11 @@ const MenuComp = () => {
     const { role } = useSelector((state) => state.user);
     const isAdmin = role === "admin";
 
-    const [isEditable, setIsEditable] = useState("false");
+    const [isEditable, setIsEditable] = useState(false);
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
 
     const getMessMenu = async () => {
-        const response = await fetch("http://localhost:3001/student/menu", {
+        const response = await fetch(`${BaseUrl}/student/menu`, {
             method: "GET",
         });
         const data = await response.json();
@@ -35,11 +34,8 @@ const MenuComp = () => {
             <Box
                 display={"flex"}
                 justifyContent={"space-between"}
-                // alignItems={"center"}
-                // flexDirection={"column"}
                 borderRadius={"1rem"}
                 margin={"1rem 1rem 1rem 1rem"}
-                // border={"1px solid"}
                 height={"35rem"}
                 width={"15rem"}
             >

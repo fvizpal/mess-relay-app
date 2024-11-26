@@ -1,6 +1,5 @@
 import { Box, Button, TextField, Typography, Alert } from "@mui/material";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
@@ -12,19 +11,22 @@ const ResetPassword = () => {
 
     const [doneReset, setDoneReset] = useState(false);
 
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
+
     const handleSubmit = async () => {
         const data = {
             newPassword: newPassword,
             confirmPassword: confirmPassword,
         };
         const response = await fetch(
-            "http://localhost:3001/auth/resetpassword",
+            `${BaseUrl}/auth/resetpassword`,
             {
                 method: "POST",
+                headers: { "Content-Type": "application/json" }, // Added headers for JSON
                 body: JSON.stringify(data),
             }
         );
-        const done = response.json();
+        const done = await response.json();
         if (done) {
             setDoneReset(true);
         }

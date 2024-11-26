@@ -23,16 +23,16 @@ const Complaint = ({
     isAdmin,
 }) => {
     const theme = useTheme();
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
     const [isUpvoted, setIsUpvoted] = useState(false);
     const [isDownvoted, setIsDownvoted] = useState(false);
-    // const [isResolved, setIsResolved] = useState(false);
 
     const dispatch = useDispatch();
 
     const patchUpvoteClick = async () => {
         const updatedVote = upvotes + 1;
         const response = await fetch(
-            `http://localhost:3001/student/complaint/upvote/${complaintId}`,
+            `${BaseUrl}/student/complaint/upvote/${complaintId}`,
             {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
@@ -47,7 +47,7 @@ const Complaint = ({
     const patchDownvoteClick = async () => {
         const downdatedVote = downvotes + 1;
         const response = await fetch(
-            `http://localhost:3001/student/complaint/downvote/${complaintId}`,
+            `${BaseUrl}/student/complaint/downvote/${complaintId}`,
             {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
@@ -61,7 +61,7 @@ const Complaint = ({
 
     const patchResolveClick = async () => {
         const response = await fetch(
-            `http://localhost:3001/admin/complaint/resolved/${complaintId}`,
+            `${BaseUrl}/admin/complaint/resolved/${complaintId}`,
             {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
@@ -91,12 +91,11 @@ const Complaint = ({
                         borderRadius: "0.75rem",
                         marginTop: "0.75rem",
                     }}
-                    src={`http://localhost:3001/assets/${picturePath}`}
+                    src={`${BaseUrl}/assets/${picturePath}`}
                 />
             )}
             <Box
                 display={"flex"}
-                // justifyContent={"space-between"}
                 alignItems={"center"}
             >
                 {!isAdmin ? (

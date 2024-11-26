@@ -11,8 +11,10 @@ const Notification = () => {
     const { role } = useSelector((state) => state.user);
     const isAdmin = role === "admin";
 
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
+
     const getNotifs = async () => {
-        const response = await fetch("http://localhost:3001/student/notifs", {
+        const response = await fetch(`${BaseUrl}/student/notifs`, {
             method: "GET",
         });
         const data = await response.json();

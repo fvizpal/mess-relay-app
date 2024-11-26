@@ -6,6 +6,8 @@ import { addNotif } from "state";
 
 const AddNotification = () => {
     // const navigate = useNavigate();
+    const BaseUrl = process.env.REACT_APP_Backend_Url; 
+    
     const dispatch = useDispatch();
     const [notif, setNotif] = useState("");
 
@@ -13,14 +15,19 @@ const AddNotification = () => {
         const formData = new FormData();
         formData.append("description", notif);
 
-        const response = await fetch("http://localhost:3001/admin/notifs", {
+        const response = await fetch(`${BaseUrl}/admin/notifs`, { 
             method: "POST",
             body: formData,
         });
-        const notifs = await response.json();
-        console.log(notifs);
-        dispatch(addNotif(notifs));
-        setNotif("");
+
+        if (response.ok) {
+            const notifs = await response.json();
+            console.log(notifs);
+            dispatch(addNotif(notifs));
+            setNotif("");
+        } else {
+            console.error("Failed to send notification");
+        }
     };
 
     return (

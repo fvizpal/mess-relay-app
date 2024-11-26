@@ -6,7 +6,6 @@ import {
     TextField,
     Typography,
     useMediaQuery,
-    // useTheme,
     Alert,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,11 +32,12 @@ const Form = () => {
     const { firstName, lastName, email, hostel } = useSelector(
         (state) => state.user
     );
-    const fullName = firstName + " " + lastName;
+    const fullName = `${firstName} ${lastName}`;
 
     const [hasComplained, setHasComplained] = useState(false);
 
     const isDesktop = useMediaQuery("(min-width:600px)");
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
 
     const registerComplaint = async (values, onSubmitProps) => {
         const formData = new FormData();
@@ -48,18 +48,14 @@ const Form = () => {
         formData.append("fullName", fullName);
         formData.append("email", email);
         formData.append("hostel", hostel);
-        // for (const pair of formData.entries()) {
-        //     console.log(pair[0] + ", " + pair[1]);
-        // }
 
         const savedUserResponse = await fetch(
-            "http://localhost:3001/student/complaint",
+            `${BaseUrl}/student/complaint`,
             {
                 method: "POST",
                 body: formData,
             }
         );
-        // console.log(savedUserResponse);
         const savedComplaint = await savedUserResponse.json();
 
         onSubmitProps.resetForm();
@@ -157,7 +153,6 @@ const Form = () => {
                                                 <Typography>
                                                     {values.picture.name}
                                                 </Typography>
-                                                {/* <EditOutlinedIcon /> */}
                                             </Box>
                                         )}
                                     </Box>
@@ -173,7 +168,6 @@ const Form = () => {
                             sx={{
                                 m: "2rem 0",
                                 p: "1rem",
-                                // backgroundColor={primary}
                                 color: "primary",
                                 "&:hover": { color: "secondary" },
                             }}
@@ -181,11 +175,9 @@ const Form = () => {
                             SUBMIT
                         </Button>
                         {hasComplained && (
-                            <>
-                                <Alert variant="filled" severity="success">
-                                    Complaint registered Successfully
-                                </Alert>
-                            </>
+                            <Alert variant="filled" severity="success">
+                                Complaint registered Successfully
+                            </Alert>
                         )}
                     </Box>
                 </form>

@@ -39,9 +39,10 @@ const columns = [
 
 const Expenses = () => {
     const dispatch = useDispatch();
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
 
     const getExpenses = async () => {
-        const response = await fetch("http://localhost:3001/admin/expenses", {
+        const response = await fetch(`${BaseUrl}/admin/expenses`, {
             method: "GET",
         });
         const data = await response.json();
@@ -62,7 +63,7 @@ const Expenses = () => {
 
     return (
         <>
-            <Header title=" Details of expenses" />
+            <Header title="Details of expenses" />
             <Box
                 sx={{
                     height: 600,

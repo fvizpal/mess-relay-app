@@ -6,6 +6,8 @@ import { Typography } from "@mui/material";
 
 const AllComplaints = () => {
     const dispatch = useDispatch();
+    const BaseUrl = process.env.REACT_APP_Backend_Url; 
+
 
     const complaints = useSelector((state) => state.complaints);
     const { role } = useSelector((state) => state.user);
@@ -13,7 +15,7 @@ const AllComplaints = () => {
 
     const getComplaints = async () => {
         const response = await fetch(
-            "http://localhost:3001/student/complaints",
+            `${BaseUrl}/student/complaints`,
             {
                 method: "GET",
             }

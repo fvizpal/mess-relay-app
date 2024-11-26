@@ -18,8 +18,6 @@ import { postNotifs } from "./controllers/admin.js";
 import { postComplaint } from "./controllers/student.js";
 import { postExpenses } from "./controllers/admin.js";
 
-import { verifyToken } from "./middleware/auth.js";
-
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,7 +59,7 @@ app.use("/student", studentRoutes);
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 6001;
 mongoose
-    .connect(process.env.MONGO_URL)
+    .connect(process.env.MONGODB_URI)
     .then(() => {
         app.listen(PORT, () => console.log(`Server running on Port ${PORT}`));
     })

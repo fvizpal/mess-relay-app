@@ -7,10 +7,11 @@ import { deleteNotif } from "state";
 const Notif = ({ notifId, description, isAdmin }) => {
     const theme = useTheme();
     const dispatch = useDispatch();
+    const BaseUrl = process.env.REACT_APP_Backend_Url; // Fetching Base URL from .env
 
     const handleDelete = async () => {
         const response = await fetch(
-            `http://localhost:3001/admin/notifs/${notifId}`,
+            `${BaseUrl}/admin/notifs/${notifId}`,
             {
                 method: "DELETE",
                 headers: {
@@ -27,7 +28,6 @@ const Notif = ({ notifId, description, isAdmin }) => {
             borderRadius={"0.2rem"}
             m={"1rem 0"}
             ml={"1rem"}
-            // border={"1px solid"}
             display={"flex"}
             width="90%"
             sx={{
@@ -36,13 +36,11 @@ const Notif = ({ notifId, description, isAdmin }) => {
         >
             <Box>{description}</Box>
             {isAdmin && (
-                <>
-                    <Box>
-                        <IconButton onClick={handleDelete}>
-                            <DeleteOutlineOutlined />
-                        </IconButton>
-                    </Box>
-                </>
+                <Box>
+                    <IconButton onClick={handleDelete}>
+                        <DeleteOutlineOutlined />
+                    </IconButton>
+                </Box>
             )}
         </Box>
     );
